@@ -1,0 +1,182 @@
+
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { ImageUpload } from './ImageUpload';
+import { ToneSelector } from './ToneSelector';
+import { Switch } from '@/components/ui/switch';
+import { useToast } from '@/hooks/use-toast';
+
+interface ProductFormProps {
+  onGenerate: (data: any) => void;
+}
+
+export const ProductForm = ({ onGenerate }: ProductFormProps) => {
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    productUrl: '',
+    images: [] as File[],
+    brand: '',
+    includeBrand: false,
+    title: '',
+    description: '',
+    tone: 'professional'
+  });
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.title.trim()) {
+      toast({
+        title: "Error",
+        description: "Product title is required",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    
+    // Simulate API call delay
+    setTimeout(() => {
+      onGenerate(formData);
+      setIsLoading(false);
+      toast({
+        title: "Success",
+        description: "Product description generated successfully!",
+      });
+    }, 2000);
+  };
+
+  const updateFormData = (field: string, value: any) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  return (
+    <Card className="max-w-4xl mx-auto backdrop-blur-sm bg-white/80 shadow-xl border-0">
+      <CardHeader className="text-center pb-6">
+        <CardTitle className="text-2xl font-semibold text-gray-800">
+          Product Information
+        </CardTitle>
+        <p className="text-gray-600">
+          Fill in the details below to generate your product description
+        </p>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="space-y-8">
+          {/* Product URL */}
+          <div className="space-y-2">
+            <Label htmlFor="productUrl" className="text-sm font-medium">
+              Product URL <span className="text-gray-400">(optional)</span>
+            </Label>
+            <Input
+              id="productUrl"
+              type="url"
+              value={formData.productUrl}
+              onChange={(e) => updateFormData('productUrl', e.target.value)}
+              placeholder="https://example.com/product"
+              className="transition-all duration-200 focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          {/* Image Upload */}
+          <div className="space-y-2">
+            <Label className="text-sm font-medium">
+              Product Images <span className="text-gray-400">(optional)</span>
+            </Label>
+            <ImageUpload
+              images={formData.images}
+              onImagesChange={(images) => updateFormData('images', images)}
+            />
+          </div>
+
+          {/* Brand Information */}
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="brand" className="text-sm font-medium">
+                Brand Name <span className="text-gray-400">(optional)</span>
+              </Label>
+              <Input
+                id="brand"
+                value={formData.brand}
+                onChange={(e) => updateFormData('brand', e.target.value)}
+                placeholder="Your Brand Name"
+                className="transition-all duration-200 focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            
+            <div className="flex items-center space-x-2">
+              <Switch
+                id="includeBrand"
+                checked={formData.includeBrand}
+                onCheckedChange={(checked) => updateFormData('includeBrand', checked)}
+              />
+              <Label htmlFor="includeBrand" className="text-sm">
+                Include brand information in description
+              </Label>
+            </div>
+          </div>
+
+          {/* Product Title - Required */}
+          <div className="space-y-2">
+            <Label htmlFor="title" className="text-sm font-medium">
+              Product Title <span className="text-red-500">*</span>
+            </Label>
+            <Input
+              id="title"
+              value={formData.title}
+              onChange={(e) => updateFormData('title', e.target.value)}
+              placeholder="Enter your product title"
+              className="transition-all duration-200 focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+
+          {/* Product Description */}
+          <div className="space-y-2">
+            <Label htmlFor="description" className="text-sm font-medium">
+              Short Description <span className="text-gray-400">(optional)</span>
+            </Label>
+            <Textarea
+              id="description"
+              value={formData.description}
+              onChange={(e) => updateFormData('description', e.target.value)}
+              placeholder="Brief description of your product..."
+              rows={3}
+              className="transition-all duration-200 focus:ring-2 focus:ring-blue-500 resize-none"
+            />
+          </div>
+
+          {/* Tone Selection */}
+          <div className="space-y-2">
+            <Label className="text-sm font-medium">Writing Tone</Label>
+            <ToneSelector
+              selectedTone={formData.tone}
+              onToneChange={(tone) => updateFormData('tone', tone)}
+            />
+          </div>
+
+          {/* Generate Button */}
+          <Button
+            type="submit"
+            disabled={isLoading}
+            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 text-lg transition-all duration-200 shadow-lg hover:shadow-xl"
+          >
+            {isLoading ? (
+              <div className="flex items-center space-x-2">
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                <span>Generating...</span>
+              </div>
+            ) : (
+              'Generate Product Description'
+            )}
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
+  );
+};
