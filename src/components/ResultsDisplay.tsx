@@ -3,8 +3,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ArrowLeft, Copy, Download } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { ImageGallery } from './ImageGallery';
+import { MarketingMaterials } from './MarketingMaterials';
+import { Sources } from './Sources';
 
 interface ResultsDisplayProps {
   content: any;
@@ -41,8 +45,110 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
     });
   };
 
+  // Mock rich data based on the selected demo
+  const getRichContent = () => {
+    const baseContent = {
+      images: [
+        'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500',
+        'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=500',
+        'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500',
+        'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500'
+      ],
+      marketingMaterials: [
+        {
+          type: 'Email Subject Lines',
+          content: `🎧 New Arrival: ${content.title} - Limited Time 20% Off!\n\n✨ Discover Premium Audio - ${content.title} Now Available\n\n🔥 Last Chance: ${content.title} - Premium Quality at Unbeatable Price`
+        },
+        {
+          type: 'Social Media Captions',
+          platform: 'Instagram',
+          content: `✨ Introducing the ${content.title} 🎵\n\nExperience audio like never before with our latest innovation. Premium quality meets cutting-edge technology.\n\n#AudioTech #PremiumSound #NewLaunch #TechLovers #QualityAudio`
+        },
+        {
+          type: 'Product Tags',
+          content: `wireless headphones, noise cancelling, premium audio, bluetooth headphones, high-quality sound, comfortable fit, long battery life, audiophile, music lover, professional audio`
+        },
+        {
+          type: 'Instagram Story',
+          platform: 'Instagram',
+          imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500',
+          size: '1080x1920',
+          content: 'Swipe up to discover premium audio'
+        },
+        {
+          type: 'Facebook Ad',
+          platform: 'Facebook',
+          imageUrl: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=500',
+          size: '1200x628',
+          content: 'Transform your listening experience'
+        }
+      ],
+      sources: {
+        manufacturer: {
+          name: 'AudioTech Pro Industries',
+          website: 'https://audiotechpro.com',
+          description: 'Leading manufacturer of premium audio equipment with over 15 years of experience in creating professional-grade consumer electronics.',
+          founded: '2008',
+          headquarters: 'San Francisco, CA'
+        },
+        competitors: [
+          {
+            name: 'Sony',
+            url: 'https://sony.com',
+            socialPost: {
+              platform: 'Instagram',
+              content: 'Immerse yourself in crystal-clear audio with our latest wireless technology',
+              engagement: '12.5K likes',
+              url: 'https://instagram.com/sony/post/123'
+            }
+          },
+          {
+            name: 'Bose',
+            url: 'https://bose.com',
+            socialPost: {
+              platform: 'Twitter',
+              content: 'Silence the world, amplify your music. Our noise-cancelling technology sets the standard.',
+              engagement: '8.2K engagements',
+              url: 'https://twitter.com/bose/status/123'
+            }
+          }
+        ],
+        marketInsights: {
+          searchVolume: '245K',
+          trending: true,
+          priceRange: '$150-$400'
+        }
+      }
+    };
+
+    return baseContent;
+  };
+
+  const richContent = getRichContent();
+
+  // Enhanced long description with HTML formatting
+  const formattedDescription = content.longDescription.split('\n\n').map((paragraph: string, index: number) => {
+    if (paragraph.includes('Key features include')) {
+      return (
+        <div key={index} className="space-y-3">
+          <p className="text-gray-700 leading-relaxed">{paragraph.split(':')[0]}:</p>
+          <ul className="list-disc list-inside space-y-1 ml-4">
+            {content.features.map((feature: string, fIndex: number) => (
+              <li key={fIndex} className="text-gray-700">{feature}</li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+    return (
+      <p key={index} className="text-gray-700 leading-relaxed">
+        {paragraph}
+      </p>
+    );
+  });
+
   return (
-    <div className="max-w-5xl mx-auto space-y-6">
+    <div className="max-w-7xl mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <Button 
@@ -73,16 +179,16 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
         </div>
       </div>
 
-      {/* Results Cards */}
+      {/* Main Content */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Main Content */}
+        {/* Product Description - Left Column */}
         <div className="lg:col-span-2 space-y-6">
           {/* Product Title & Info */}
           <Card className="backdrop-blur-sm bg-white/80 shadow-lg border-0">
             <CardHeader>
               <div className="flex items-start justify-between">
                 <div>
-                  <CardTitle className="text-2xl text-gray-900 mb-2">
+                  <CardTitle className="text-3xl text-gray-900 mb-3">
                     {content.title}
                   </CardTitle>
                   <div className="flex space-x-2">
@@ -100,7 +206,7 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
             </CardHeader>
             {content.shortDescription && (
               <CardContent>
-                <p className="text-gray-600 text-lg leading-relaxed">
+                <p className="text-gray-600 text-xl leading-relaxed">
                   {content.shortDescription}
                 </p>
               </CardContent>
@@ -122,62 +228,87 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="prose prose-gray max-w-none">
-                {content.longDescription.split('\n\n').map((paragraph: string, index: number) => (
-                  <p key={index} className="text-gray-700 leading-relaxed mb-4">
-                    {paragraph}
-                  </p>
-                ))}
+              <div className="prose prose-gray max-w-none space-y-4">
+                {formattedDescription}
               </div>
             </CardContent>
           </Card>
         </div>
 
-        {/* Sidebar */}
+        {/* Image Gallery - Right Column */}
         <div className="space-y-6">
+          <Card className="backdrop-blur-sm bg-white/80 shadow-lg border-0">
+            <CardHeader>
+              <CardTitle>Product Images</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ImageGallery images={richContent.images} title={content.title} />
+            </CardContent>
+          </Card>
+
           {/* Key Features */}
           <Card className="backdrop-blur-sm bg-white/80 shadow-lg border-0">
             <CardHeader>
               <CardTitle className="text-lg">Key Features</CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="space-y-2">
+              <ul className="space-y-3">
                 {content.features.map((feature: string, index: number) => (
-                  <li key={index} className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-700 text-sm">{feature}</span>
+                  <li key={index} className="flex items-start space-x-3">
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 mt-2 flex-shrink-0"></div>
+                    <span className="text-gray-700 text-sm leading-relaxed">{feature}</span>
                   </li>
                 ))}
               </ul>
             </CardContent>
           </Card>
-
-          {/* Sample Marketing Content */}
-          <Card className="backdrop-blur-sm bg-white/80 shadow-lg border-0">
-            <CardHeader>
-              <CardTitle className="text-lg">Marketing Ideas</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Social Media Caption</h4>
-                <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded">
-                  "✨ Introducing the {content.title} - where innovation meets excellence! 
-                  Perfect for those who demand the best. #Quality #Innovation #Excellence"
-                </p>
-              </div>
-              
-              <Separator />
-              
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Email Subject</h4>
-                <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded">
-                  "🎉 New Arrival: {content.title} - Limited Time Offer!"
-                </p>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </div>
+
+      {/* Tabbed Content */}
+      <Card className="backdrop-blur-sm bg-white/80 shadow-lg border-0">
+        <CardContent className="p-6">
+          <Tabs defaultValue="marketing" className="w-full">
+            <TabsList className="grid w-full grid-cols-3">
+              <TabsTrigger value="marketing">Marketing Materials</TabsTrigger>
+              <TabsTrigger value="sources">Research Sources</TabsTrigger>
+              <TabsTrigger value="analytics">Market Analytics</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="marketing" className="mt-6">
+              <MarketingMaterials 
+                materials={richContent.marketingMaterials} 
+                productTitle={content.title}
+              />
+            </TabsContent>
+            
+            <TabsContent value="sources" className="mt-6">
+              <Sources 
+                manufacturer={richContent.sources.manufacturer}
+                competitors={richContent.sources.competitors}
+                marketInsights={richContent.sources.marketInsights}
+              />
+            </TabsContent>
+            
+            <TabsContent value="analytics" className="mt-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <Card className="text-center p-6">
+                  <h3 className="text-2xl font-bold text-blue-600">245K</h3>
+                  <p className="text-gray-600">Monthly Searches</p>
+                </Card>
+                <Card className="text-center p-6">
+                  <h3 className="text-2xl font-bold text-green-600">$150-$400</h3>
+                  <p className="text-gray-600">Price Range</p>
+                </Card>
+                <Card className="text-center p-6">
+                  <h3 className="text-2xl font-bold text-purple-600">85%</h3>
+                  <p className="text-gray-600">Customer Satisfaction</p>
+                </Card>
+              </div>
+            </TabsContent>
+          </Tabs>
+        </CardContent>
+      </Card>
     </div>
   );
 };
