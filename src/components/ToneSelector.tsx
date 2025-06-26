@@ -4,6 +4,7 @@ import { Card } from '@/components/ui/card';
 interface ToneSelectorProps {
   selectedTone: string;
   onToneChange: (tone: string) => void;
+  disabled?: boolean;
 }
 
 const tones = [
@@ -45,18 +46,22 @@ const tones = [
   }
 ];
 
-export const ToneSelector = ({ selectedTone, onToneChange }: ToneSelectorProps) => {
+export const ToneSelector = ({ selectedTone, onToneChange, disabled = false }: ToneSelectorProps) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {tones.map((tone) => (
         <Card
           key={tone.id}
-          className={`p-4 cursor-pointer transition-all duration-200 hover:shadow-md ${
+          className={`p-4 transition-all duration-200 ${
+            disabled 
+              ? 'opacity-50 cursor-not-allowed' 
+              : 'cursor-pointer hover:shadow-md'
+          } ${
             selectedTone === tone.id
               ? 'ring-2 ring-blue-500 bg-blue-50 border-blue-200'
               : 'hover:border-gray-300'
           }`}
-          onClick={() => onToneChange(tone.id)}
+          onClick={() => !disabled && onToneChange(tone.id)}
         >
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-900">{tone.name}</h3>

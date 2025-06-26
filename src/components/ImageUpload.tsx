@@ -1,49 +1,17 @@
 
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Upload, X, Image } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
 
 interface ImageUploadProps {
   images: File[];
   onImagesChange: (images: File[]) => void;
+  disabled?: boolean;
 }
 
-export const ImageUpload = ({ images, onImagesChange }: ImageUploadProps) => {
-  const { toast } = useToast();
-  const fileInputRef = useRef<HTMLInputElement>(null);
+export const ImageUpload = ({ images, onImagesChange, disabled = false }: ImageUploadProps) => {
   const [dragActive, setDragActive] = useState(false);
-
-  const handleFiles = (files: FileList) => {
-    const validFiles = Array.from(files).filter(file => {
-      if (!file.type.startsWith('image/')) {
-        toast({
-          title: "Invalid file type",
-          description: `${file.name} is not an image file`,
-          variant: "destructive",
-        });
-        return false;
-      }
-      if (file.size > 10 * 1024 * 1024) { // 10MB limit
-        toast({
-          title: "File too large",
-          description: `${file.name} is larger than 10MB`,
-          variant: "destructive",
-        });
-        return false;
-      }
-      return true;
-    });
-
-    if (validFiles.length > 0) {
-      onImagesChange([...images, ...validFiles]);
-      toast({
-        title: "Images uploaded",
-        description: `${validFiles.length} image(s) added successfully`,
-      });
-    }
-  };
 
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
@@ -60,85 +28,86 @@ export const ImageUpload = ({ images, onImagesChange }: ImageUploadProps) => {
     e.stopPropagation();
     setDragActive(false);
     
+    if (disabled) return;
+    
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      handleFiles(e.dataTransfer.files);
+      const files = Array.from(e.dataTransfer.files).filter(file => file.type.startsWith('image/'));
+      onImagesChange([...images, ...files]);
+    }
+  };
+
+  const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (disabled) return;
+    
+    if (e.target.files) {
+      const files = Array.from(e.target.files).filter(file => file.type.startsWith('image/'));
+      onImagesChange([...images, ...files]);
     }
   };
 
   const removeImage = (index: number) => {
+    if (disabled) return;
+    
     const newImages = images.filter((_, i) => i !== index);
     onImagesChange(newImages);
   };
 
-  const getImagePreview = (file: File) => {
-    return URL.createObjectURL(file);
-  };
-
   return (
     <div className="space-y-4">
-      {/* Upload Area */}
-      <Card 
-        className={`border-2 border-dashed transition-all duration-200 ${
-          dragActive 
-            ? 'border-blue-500 bg-blue-50' 
-            : 'border-gray-300 hover:border-gray-400'
-        }`}
+      <Card
+        className={`border-2 border-dashed transition-colors ${
+          dragActive ? 'border-blue-400 bg-blue-50' : 'border-gray-300'
+        } ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:border-gray-400'}`}
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
         onDragOver={handleDrag}
         onDrop={handleDrop}
       >
-        <div className="p-8 text-center">
-          <Upload className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-          <p className="text-lg font-medium text-gray-700 mb-2">
-            Upload Product Images
-          </p>
-          <p className="text-sm text-gray-500 mb-4">
-            Drag and drop images here, or click to select files
+        <CardContent className="flex flex-col items-center justify-center p-8 text-center">
+          <Upload className="w-8 h-8 text-gray-400 mb-4" />
+          <p className="text-gray-600 mb-2">
+            {disabled ? 'Image upload disabled in demo mode' : 'Drag and drop images here, or click to select'}
           </p>
           <Button
-            type="button"
             variant="outline"
-            onClick={() => fileInputRef.current?.click()}
-            className="transition-all duration-200"
+            disabled={disabled}
+            onClick={() => !disabled && document.getElementById('file-input')?.click()}
           >
             <Image className="w-4 h-4 mr-2" />
             Choose Images
           </Button>
           <input
-            ref={fileInputRef}
+            id="file-input"
             type="file"
             multiple
             accept="image/*"
-            onChange={(e) => e.target.files && handleFiles(e.target.files)}
+            onChange={handleFileInput}
             className="hidden"
+            disabled={disabled}
           />
-        </div>
+        </CardContent>
       </Card>
 
-      {/* Image Previews */}
       {images.length > 0 && (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {images.map((image, index) => (
-            <Card key={index} className="relative group overflow-hidden">
+            <div key={index} className="relative group">
               <img
-                src={getImagePreview(image)}
-                alt={`Product image ${index + 1}`}
-                className="w-full h-24 object-cover transition-transform duration-200 group-hover:scale-105"
+                src={URL.createObjectURL(image)}
+                alt={`Upload ${index + 1}`}
+                className="w-full h-24 object-cover rounded-lg"
               />
-              <Button
-                type="button"
-                variant="destructive"
-                size="sm"
-                className="absolute top-1 right-1 w-6 h-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                onClick={() => removeImage(index)}
-              >
-                <X className="w-3 h-3" />
-              </Button>
-              <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs p-1 truncate">
-                {image.name}
-              </div>
-            </Card>
+              {!disabled && (
+                <Button
+                  variant="destructive"
+                  size="sm"
+                  className="absolute -top-2 -right-2 h-6 w-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                  onClick={() => removeImage(index)}
+                >
+                  <X className="w-3 h-3" />
+                </Button>
+              )}
+            </div>
           ))}
         </div>
       )}
