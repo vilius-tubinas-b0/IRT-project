@@ -45,7 +45,7 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
     });
   };
 
-  // Mock rich data based on the selected demo
+  // Enhanced mock data with richer marketing materials
   const getRichContent = () => {
     const baseContent = {
       images: [
@@ -57,12 +57,22 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
       marketingMaterials: [
         {
           type: 'Email Subject Lines',
-          content: `🎧 New Arrival: ${content.title} - Limited Time 20% Off!\n\n✨ Discover Premium Audio - ${content.title} Now Available\n\n🔥 Last Chance: ${content.title} - Premium Quality at Unbeatable Price`
+          items: [
+            `🎧 New Arrival: ${content.title} - Limited Time 20% Off!`,
+            `✨ Discover Premium Audio - ${content.title} Now Available`,
+            `🔥 Last Chance: ${content.title} - Premium Quality at Unbeatable Price`,
+            `Transform Your Listening Experience with ${content.title}`,
+            `${content.title}: The Audio Revolution You've Been Waiting For`
+          ]
         },
         {
           type: 'Social Media Captions',
           platform: 'Instagram',
-          content: `✨ Introducing the ${content.title} 🎵\n\nExperience audio like never before with our latest innovation. Premium quality meets cutting-edge technology.\n\n#AudioTech #PremiumSound #NewLaunch #TechLovers #QualityAudio`
+          items: [
+            `✨ Introducing the ${content.title} 🎵\n\nExperience audio like never before with our latest innovation. Premium quality meets cutting-edge technology.\n\n#AudioTech #PremiumSound #NewLaunch`,
+            `🎧 Ready to elevate your sound? The ${content.title} is here to transform every beat, every note, every moment.\n\n#MusicLovers #TechInnovation #QualityAudio`,
+            `From morning commutes to late-night sessions, the ${content.title} delivers unmatched audio clarity. Your ears deserve the best.\n\n#Audiophile #PremiumExperience`
+          ]
         },
         {
           type: 'Product Tags',
@@ -76,11 +86,19 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
           content: 'Swipe up to discover premium audio'
         },
         {
-          type: 'Facebook Ad',
+          type: 'Facebook Ad Visual',
           platform: 'Facebook',
           imageUrl: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=500',
           size: '1200x628',
           content: 'Transform your listening experience'
+        },
+        {
+          type: 'Product Demo Video',
+          platform: 'YouTube',
+          videoUrl: 'https://example.com/demo-video.mp4',
+          imageUrl: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500',
+          size: '1920x1080',
+          content: 'See the product in action'
         }
       ],
       sources: {
@@ -98,8 +116,10 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
             socialPost: {
               platform: 'Instagram',
               content: 'Immerse yourself in crystal-clear audio with our latest wireless technology',
-              engagement: '12.5K likes',
-              url: 'https://instagram.com/sony/post/123'
+              engagement: '12.5K views',
+              likes: '2.1K',
+              url: 'https://instagram.com/sony/post/123',
+              imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400'
             }
           },
           {
@@ -108,8 +128,10 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
             socialPost: {
               platform: 'Twitter',
               content: 'Silence the world, amplify your music. Our noise-cancelling technology sets the standard.',
-              engagement: '8.2K engagements',
-              url: 'https://twitter.com/bose/status/123'
+              engagement: '8.2K views',
+              likes: '1.8K',
+              url: 'https://twitter.com/bose/status/123',
+              imageUrl: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400'
             }
           }
         ],
@@ -126,15 +148,26 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
 
   const richContent = getRichContent();
 
-  // Enhanced long description with HTML formatting
+  // Convert markdown-style text to React components
+  const formatDescription = (text: string) => {
+    const parts = text.split(/(\*\*.*?\*\*)/g);
+    return parts.map((part, index) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={index}>{part.slice(2, -2)}</strong>;
+      }
+      return part;
+    });
+  };
+
   const formattedDescription = content.longDescription.split('\n\n').map((paragraph: string, index: number) => {
-    if (paragraph.includes('Key features include')) {
+    if (paragraph.includes('**Key') || paragraph.includes('**Advanced')) {
+      const [title, ...items] = paragraph.split('\n');
       return (
         <div key={index} className="space-y-3">
-          <p className="text-gray-700 leading-relaxed">{paragraph.split(':')[0]}:</p>
+          <p className="text-gray-700 leading-relaxed font-medium">{formatDescription(title)}</p>
           <ul className="list-disc list-inside space-y-1 ml-4">
-            {content.features.map((feature: string, fIndex: number) => (
-              <li key={fIndex} className="text-gray-700">{feature}</li>
+            {items.map((item: string, fIndex: number) => (
+              <li key={fIndex} className="text-gray-700">{item.replace('• ', '')}</li>
             ))}
           </ul>
         </div>
@@ -142,7 +175,7 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
     }
     return (
       <p key={index} className="text-gray-700 leading-relaxed">
-        {paragraph}
+        {formatDescription(paragraph)}
       </p>
     );
   });

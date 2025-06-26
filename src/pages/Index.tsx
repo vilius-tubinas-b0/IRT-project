@@ -17,14 +17,16 @@ const Index = () => {
     includeBrand: false,
     title: '',
     description: '',
-    tone: 'professional'
+    tone: 'professional',
+    selectedDemo: ''
   });
 
   const handleDemoSelect = (productId: string, productData: any) => {
     setSelectedDemo(productId);
     setFormData(prev => ({
       ...prev,
-      ...productData
+      ...productData,
+      selectedDemo: productId
     }));
   };
 
@@ -47,13 +49,19 @@ const Index = () => {
       if (selectedDemo === 'wireless-headphones') {
         return {
           ...baseResults,
-          longDescription: `Discover the exceptional ${formData.title}, a premium audio solution that combines innovative noise-cancelling technology with outstanding sound quality. This remarkable device represents the perfect blend of comfort, durability, and cutting-edge engineering, making it an ideal choice for audiophiles and everyday music lovers alike.
+          longDescription: `Discover the exceptional **${formData.title}**, a premium audio solution that combines innovative noise-cancelling technology with outstanding sound quality. This remarkable device represents the perfect blend of comfort, durability, and cutting-edge engineering.
 
-Built with meticulous attention to detail, these headphones offer unparalleled audio performance and all-day comfort. The sophisticated design not only enhances functionality but also adds a touch of elegance to your daily routine. Whether you're commuting, working, or relaxing at home, these headphones deliver exceptional audio clarity and immersive sound experience.
+**Key Features:**
+• Active noise cancellation technology  
+• Premium 40mm drivers for rich sound  
+• 30-hour battery life with quick charge  
+• Comfortable over-ear design  
+• Touch controls and voice assistant  
+• Foldable design for portability
 
-Advanced features include premium drivers, adaptive noise cancellation, and intuitive touch controls that make them stand out in the competitive audio market. The product has been thoroughly tested to ensure it meets the highest standards of audio quality and build durability, giving you confidence in your purchase.
+Built with meticulous attention to detail, these headphones offer unparalleled audio performance and all-day comfort. The sophisticated design not only enhances functionality but also adds a touch of elegance to your daily routine.
 
-Perfect for both professional and personal use, the ${formData.title} represents exceptional value and long-term satisfaction. The versatile design makes them suitable for various listening scenarios, while robust construction ensures years of reliable performance.`,
+Perfect for both professional and personal use, the ${formData.title} represents exceptional value and long-term satisfaction.`,
           features: [
             'Active noise cancellation technology',
             'Premium 40mm drivers for rich sound',
@@ -65,16 +73,48 @@ Perfect for both professional and personal use, the ${formData.title} represents
         };
       }
 
+      if (selectedDemo === 'coffee-maker') {
+        return {
+          ...baseResults,
+          shortDescription: 'Commercial-grade espresso maker for home use',
+          longDescription: `Experience café-quality espresso at home with the **${formData.title}**. This commercial-grade machine brings professional brewing capabilities to your kitchen.
+
+**Advanced Brewing System:**
+• 15-bar pressure pump for optimal extraction  
+• Dual boiler system for simultaneous brewing and steaming  
+• Precise temperature control (±1°C accuracy)  
+• Pre-infusion for enhanced flavor extraction  
+• Programmable shot volumes  
+• Professional steam wand for milk texturing
+
+Crafted with premium stainless steel construction and featuring intuitive controls, this espresso machine delivers consistently exceptional results. Whether you're a coffee enthusiast or aspiring home barista, this machine elevates your coffee experience.
+
+Transform your morning routine with professional-grade espresso, cappuccinos, and lattes from the comfort of your home.`,
+          features: [
+            '15-bar pressure pump system',
+            'Dual boiler technology',
+            'Precise temperature control',
+            'Pre-infusion capability',
+            'Professional steam wand',
+            'Programmable shot volumes'
+          ]
+        };
+      }
+
       // Default enhanced description for other products
       return {
         ...baseResults,
-        longDescription: `Discover the exceptional ${formData.title}, a premium product that combines innovative design with outstanding functionality. This remarkable item represents the perfect blend of quality craftsmanship and modern technology, making it an ideal choice for discerning customers who demand excellence.
+        longDescription: `Discover the exceptional **${formData.title}**, a premium product that combines innovative design with outstanding functionality.
 
-Built with meticulous attention to detail, the ${formData.title} offers unparalleled performance and reliability. Its sophisticated design not only enhances functionality but also adds a touch of elegance to any setting. Whether you're looking for professional-grade performance or everyday reliability, this product delivers on all fronts.
+**Key Benefits:**
+• Premium quality materials  
+• Advanced engineering design  
+• User-friendly interface  
+• Durable construction  
+• Versatile functionality  
+• Professional-grade performance
 
-Key features include advanced materials, precision engineering, and user-friendly design elements that make it stand out in its category. The product has been thoroughly tested to ensure it meets the highest standards of quality and durability, giving you confidence in your purchase.
-
-Perfect for both personal and professional use, the ${formData.title} represents exceptional value and long-term satisfaction. Its versatile design makes it suitable for a wide range of applications, while its robust construction ensures years of reliable service.`,
+Built with meticulous attention to detail, this product offers unparalleled performance and reliability. Perfect for both personal and professional use.`,
         features: [
           'Premium quality materials',
           'Advanced engineering design', 

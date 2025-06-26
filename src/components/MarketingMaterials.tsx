@@ -3,8 +3,7 @@ import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Copy, Download, Mail, MessageSquare, Tag, Image } from 'lucide-react';
+import { Copy, Download, Mail, MessageSquare, Tag, Image, Play } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface MarketingMaterial {
@@ -13,6 +12,8 @@ interface MarketingMaterial {
   platform?: string;
   size?: string;
   imageUrl?: string;
+  videoUrl?: string;
+  items?: string[];
 }
 
 interface MarketingMaterialsProps {
@@ -32,9 +33,9 @@ export const MarketingMaterials = ({ materials, productTitle }: MarketingMateria
     });
   };
 
-  const downloadImage = (imageUrl: string, filename: string) => {
+  const downloadAsset = (url: string, filename: string) => {
     const link = document.createElement('a');
-    link.href = imageUrl;
+    link.href = url;
     link.download = filename;
     document.body.appendChild(link);
     link.click();
@@ -42,15 +43,14 @@ export const MarketingMaterials = ({ materials, productTitle }: MarketingMateria
     
     toast({
       title: "Downloaded!",
-      description: "Marketing material saved to your device",
+      description: "Asset saved to your device",
     });
   };
 
   const categories = [
     { id: 'all', name: 'All Materials', icon: null },
-    { id: 'email', name: 'Email Marketing', icon: Mail },
+    { id: 'copy', name: 'Marketing Copy', icon: Mail },
     { id: 'social', name: 'Social Media', icon: MessageSquare },
-    { id: 'seo', name: 'SEO & Tags', icon: Tag },
     { id: 'visuals', name: 'Visual Assets', icon: Image }
   ];
 
@@ -58,21 +58,19 @@ export const MarketingMaterials = ({ materials, productTitle }: MarketingMateria
     if (category === 'all') return materials;
     
     switch (category) {
-      case 'email':
-        return materials.filter(m => m.type.toLowerCase().includes('email'));
+      case 'copy':
+        return materials.filter(m => !m.imageUrl && !m.videoUrl);
       case 'social':
-        return materials.filter(m => m.platform && ['Instagram', 'Facebook', 'Twitter'].includes(m.platform));
-      case 'seo':
-        return materials.filter(m => m.type.toLowerCase().includes('tag'));
+        return materials.filter(m => m.platform && ['Instagram', 'Facebook', 'Twitter', 'LinkedIn'].includes(m.platform));
       case 'visuals':
-        return materials.filter(m => m.imageUrl);
+        return materials.filter(m => m.imageUrl || m.videoUrl);
       default:
         return materials;
     }
   };
 
-  const textMaterials = getCategoryMaterials(selectedCategory).filter(m => !m.imageUrl);
-  const imageMaterials = getCategoryMaterials(selectedCategory).filter(m => m.imageUrl);
+  const copyMaterials = getCategoryMaterials(selectedCategory).filter(m => !m.imageUrl && !m.videoUrl);
+  const visualMaterials = getCategoryMaterials(selectedCategory).filter(m => m.imageUrl || m.videoUrl);
 
   return (
     <div className="space-y-6">
@@ -98,40 +96,60 @@ export const MarketingMaterials = ({ materials, productTitle }: MarketingMateria
         })}
       </div>
 
-      {/* Text-based Marketing Materials */}
-      {textMaterials.length > 0 && (
+      {/* Marketing Copy with Chips */}
+      {copyMaterials.length > 0 && (
         <div className="space-y-4">
           <h3 className="text-lg font-semibold text-gray-900">Marketing Copy</h3>
-          <div className="grid gap-4">
-            {textMaterials.map((material, index) => (
-              <Card key={index} className="border-l-4 border-l-blue-500 hover:shadow-md transition-shadow">
+          <div className="space-y-6">
+            {copyMaterials.map((material, index) => (
+              <Card key={index} className="border-l-4 border-l-blue-500">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <CardTitle className="text-base">{material.type}</CardTitle>
+                    <CardTitle className="text-base flex items-center space-x-2">
+                      <span>{material.type}</span>
                       {material.platform && (
                         <Badge variant="secondary">{material.platform}</Badge>
                       )}
-                    </div>
-                    <div className="flex space-x-2">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => copyToClipboard(material.content, material.type)}
-                        className="flex items-center space-x-1"
-                      >
-                        <Copy className="w-4 h-4" />
-                        <span className="hidden sm:inline">Copy</span>
-                      </Button>
-                    </div>
+                    </CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="bg-gray-50 p-4 rounded-lg">
-                    <p className="text-gray-700 whitespace-pre-wrap font-mono text-sm">
-                      {material.content}
-                    </p>
-                  </div>
+                  {material.items ? (
+                    <div className="space-y-3">
+                      <p className="text-sm text-gray-600 mb-3">Click any option to copy:</p>
+                      <div className="flex flex-wrap gap-2">
+                        {material.items.map((item, itemIndex) => (
+                          <Button
+                            key={itemIndex}
+                            variant="outline"
+                            size="sm"
+                            onClick={() => copyToClipboard(item, material.type)}
+                            className="flex items-center space-x-2 h-auto p-3 text-left justify-start max-w-full"
+                          >
+                            <Copy className="w-3 h-3 flex-shrink-0" />
+                            <span className="truncate">{item}</span>
+                          </Button>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="space-y-3">
+                      <div className="bg-gray-50 p-4 rounded-lg">
+                        <p className="text-gray-700 whitespace-pre-wrap text-sm">
+                          {material.content}
+                        </p>
+                      </div>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => copyToClipboard(material.content, material.type)}
+                        className="flex items-center space-x-2"
+                      >
+                        <Copy className="w-4 h-4" />
+                        <span>Copy</span>
+                      </Button>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             ))}
@@ -139,28 +157,44 @@ export const MarketingMaterials = ({ materials, productTitle }: MarketingMateria
         </div>
       )}
 
-      {/* Image-based Marketing Materials */}
-      {imageMaterials.length > 0 && (
+      {/* Visual Marketing Assets Grid */}
+      {visualMaterials.length > 0 && (
         <div className="space-y-4">
           <h3 className="text-lg font-semibold text-gray-900">Visual Marketing Assets</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {imageMaterials.map((material, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {visualMaterials.map((material, index) => (
               <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
                 <div className="relative group">
-                  <img
-                    src={material.imageUrl}
-                    alt={`${material.type} for ${productTitle}`}
-                    className="w-full h-48 object-cover"
-                  />
+                  {material.videoUrl ? (
+                    <div className="relative bg-gray-900">
+                      <video
+                        src={material.videoUrl}
+                        className="w-full h-48 object-cover"
+                        poster={material.imageUrl}
+                        muted
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="bg-white/90 rounded-full p-3">
+                          <Play className="w-6 h-6 text-gray-900" />
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <img
+                      src={material.imageUrl}
+                      alt={`${material.type} for ${productTitle}`}
+                      className="w-full h-48 object-cover"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-200">
                     <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
                       <Button
                         variant="outline"
                         size="sm"
                         className="bg-white/90 hover:bg-white"
-                        onClick={() => downloadImage(
-                          material.imageUrl!,
-                          `${productTitle}_${material.type.replace(/\s+/g, '_')}.jpg`
+                        onClick={() => downloadAsset(
+                          material.imageUrl || material.videoUrl!,
+                          `${productTitle}_${material.type.replace(/\s+/g, '_')}.${material.videoUrl ? 'mp4' : 'jpg'}`
                         )}
                       >
                         <Download className="w-4 h-4" />
@@ -169,32 +203,22 @@ export const MarketingMaterials = ({ materials, productTitle }: MarketingMateria
                   </div>
                 </div>
                 <CardContent className="p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <h4 className="font-medium text-gray-900">{material.type}</h4>
-                    <div className="flex items-center space-x-2">
-                      {material.platform && (
-                        <Badge variant="outline" className="text-xs">{material.platform}</Badge>
-                      )}
-                      {material.size && (
-                        <Badge variant="secondary" className="text-xs">{material.size}</Badge>
-                      )}
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <h4 className="font-medium text-gray-900">{material.type}</h4>
+                      <div className="flex items-center space-x-1">
+                        {material.platform && (
+                          <Badge variant="outline" className="text-xs">{material.platform}</Badge>
+                        )}
+                        {material.size && (
+                          <Badge variant="secondary" className="text-xs">{material.size}</Badge>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  {material.content && (
-                    <p className="text-sm text-gray-600 mb-3">{material.content}</p>
-                  )}
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="w-full"
-                    onClick={() => downloadImage(
-                      material.imageUrl!,
-                      `${productTitle}_${material.type.replace(/\s+/g, '_')}.jpg`
+                    {material.content && (
+                      <p className="text-sm text-gray-600">{material.content}</p>
                     )}
-                  >
-                    <Download className="w-4 h-4 mr-2" />
-                    Download Asset
-                  </Button>
+                  </div>
                 </CardContent>
               </Card>
             ))}

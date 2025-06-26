@@ -19,7 +19,6 @@ interface ProductFormProps {
 
 export const ProductForm = ({ onGenerate, selectedDemo, formData, onFormDataChange }: ProductFormProps) => {
   const { toast } = useToast();
-  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,7 +26,7 @@ export const ProductForm = ({ onGenerate, selectedDemo, formData, onFormDataChan
     if (!selectedDemo) {
       toast({
         title: "Demo Version Only",
-        description: "Please select a demo product from the controls in the top-right corner.",
+        description: "Please select a demo product from the controls at the bottom of the page.",
         variant: "destructive",
       });
       return;
@@ -42,17 +41,8 @@ export const ProductForm = ({ onGenerate, selectedDemo, formData, onFormDataChan
       return;
     }
 
-    setIsLoading(true);
-    
-    // Simulate API call delay
-    setTimeout(() => {
-      onGenerate({ ...formData, selectedDemo });
-      setIsLoading(false);
-      toast({
-        title: "Success",
-        description: "Product description generated successfully!",
-      });
-    }, 3000);
+    // Take user directly to loading screen
+    onGenerate({ ...formData, selectedDemo });
   };
 
   const updateFormData = (field: string, value: any) => {
@@ -178,23 +168,16 @@ export const ProductForm = ({ onGenerate, selectedDemo, formData, onFormDataChan
           {/* Generate Button */}
           <Button
             type="submit"
-            disabled={isLoading || !selectedDemo}
+            disabled={!selectedDemo}
             className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 text-lg transition-all duration-200 shadow-lg hover:shadow-xl"
           >
-            {isLoading ? (
-              <div className="flex items-center space-x-2">
-                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                <span>Analyzing & Generating...</span>
-              </div>
-            ) : (
-              'Generate Product Description'
-            )}
+            Generate Product Description
           </Button>
 
           {!selectedDemo && (
             <div className="text-center">
               <p className="text-sm text-amber-600 bg-amber-50 p-4 rounded-lg border border-amber-200">
-                👆 Please select a demo product from the controls in the top-right corner to get started.
+                👇 Please select a demo product from the controls at the bottom of the page to get started.
               </p>
             </div>
           )}

@@ -49,7 +49,7 @@ interface LoadingScreenProps {
 export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [progress, setProgress] = useState(0);
-  const [completedSteps, setCompletedSteps] = useState<string[]>([]);
+  const [completedSteps, setCompletedSteps] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     const totalDuration = loadingSteps.reduce((sum, step) => sum + step.duration, 0);
@@ -60,15 +60,15 @@ export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
       const newProgress = Math.min((elapsed / totalDuration) * 100, 100);
       setProgress(newProgress);
 
-      // Update current step based on elapsed time
+      // Update current step and completed steps based on elapsed time
       let stepElapsed = 0;
       for (let i = 0; i < loadingSteps.length; i++) {
         stepElapsed += loadingSteps[i].duration;
-        if (elapsed < stepElapsed) {
+        if (elapsed >= stepElapsed - loadingSteps[i].duration && elapsed < stepElapsed) {
           setCurrentStep(i);
-          break;
-        } else if (!completedSteps.includes(loadingSteps[i].id)) {
-          setCompletedSteps(prev => [...prev, loadingSteps[i].id]);
+        }
+        if (elapsed >= stepElapsed) {
+          setCompletedSteps(prev => new Set([...prev, loadingSteps[i].id]));
         }
       }
 
@@ -79,7 +79,7 @@ export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
     }, 100);
 
     return () => clearInterval(timer);
-  }, [onComplete, completedSteps]);
+  }, [onComplete]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex items-center justify-center p-4">
@@ -107,7 +107,7 @@ export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
               {loadingSteps.map((step, index) => {
                 const Icon = step.icon;
                 const isActive = index === currentStep;
-                const isCompleted = completedSteps.includes(step.id);
+                const isCompleted = completedSteps.has(step.id);
                 
                 return (
                   <div
