@@ -4,38 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ChevronUp, ChevronDown, Cog } from 'lucide-react';
-
-const demoProducts = [
-  {
-    id: 'stanley-tumbler',
-    title: 'Stanley IceFlow™ Flip Straw Tumbler 30oz',
-    description: 'Durable, stylish water bottle with built-in straw and double-wall vacuum insulation',
-    brand: 'Stanley',
-    category: 'Drinkware'
-  },
-  {
-    id: 'the-ordinary-niacinamide',
-    title: 'Niacinamide 10% + Zinc 1% Serum',
-    description: 'Clinical-strength serum designed to visibly reduce blemishes and balance sebum activity',
-    brand: 'The Ordinary',
-    category: 'Skincare'
-  },
-  {
-    id: 'baltic-candle',
-    title: 'Baltic Sea Scented Candle — Hand-Poured in Klaipėda',
-    description: 'Locally crafted soy wax candle inspired by sea breeze, pine, and amber resin',
-    brand: 'Klaipėda Home',
-    category: 'Home Fragrance'
-  },
-  {
-    id: 'keyboard-slime',
-    title: 'Anti-Stress Keyboard Cleaner Slime — Blueberry Scented',
-    description: 'Novelty slime toy that cleans dust from keyboards while relieving stress',
-    brand: 'ZenGadget',
-    category: 'Accessories'
-  }
-];
-
+import { demoProducts } from '@/data/demoProducts';
 
 interface DemoControlsProps {
   selectedDemo: string;

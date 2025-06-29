@@ -9,6 +9,7 @@ import { useToast } from '@/hooks/use-toast';
 import { ImageGallery } from './ImageGallery';
 import { MarketingMaterials } from './MarketingMaterials';
 import { Sources } from './Sources';
+import { getProductById, getProductImages, getProductMarketingMaterials } from '@/data/demoProducts';
 
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -49,74 +50,18 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
     });
   };
 
-  // Enhanced mock data with richer marketing materials
+  // Get rich content from centralized data
   const getRichContent = () => {
+    const selectedProduct = getProductById(content.selectedDemo);
+    
     const baseContent = {
-      images: [
-        'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500',
-        'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=500',
-        'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500',
-        'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500'
-      ],
-      marketingMaterials: [
-        {
-          type: 'Email Subject Lines',
-          items: [
-            `🎧 New Arrival: ${content.title} - Limited Time 20% Off!`,
-            `✨ Discover Premium Audio - ${content.title} Now Available`,
-            `🔥 Last Chance: ${content.title} - Premium Quality at Unbeatable Price`,
-            `Transform Your Listening Experience with ${content.title}`,
-            `${content.title}: The Audio Revolution You've Been Waiting For`
-          ]
-        },
-        {
-          type: 'Social Media Captions',
-          platform: 'Instagram',
-          items: [
-            `✨ Introducing the ${content.title} 🎵\n\nExperience audio like never before with our latest innovation. Premium quality meets cutting-edge technology.\n\n#AudioTech #PremiumSound #NewLaunch`,
-            `🎧 Ready to elevate your sound? The ${content.title} is here to transform every beat, every note, every moment.\n\n#MusicLovers #TechInnovation #QualityAudio`,
-            `From morning commutes to late-night sessions, the ${content.title} delivers unmatched audio clarity. Your ears deserve the best.\n\n#Audiophile #PremiumExperience`
-          ]
-        },
-        {
-          type: 'Product Tags',
-          content: `wireless headphones, noise cancelling, premium audio, bluetooth headphones, high-quality sound, comfortable fit, long battery life, audiophile, music lover, professional audio`
-        },
-        {
-          type: 'Story',
-          platform: 'Instagram',
-          imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500',
-          size: '1080x1920',
-          content: 'Swipe up to discover premium audio'
-        },
-                {
-          type: 'Post',
-          platform: 'Instagram',
-          imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500',
-          size: '1080x1920',
-          content: 'Swipe up to discover premium audio'
-        },
-        {
-          type: 'Ad',
-          platform: 'Facebook',
-          imageUrl: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=500',
-          size: '1200x628',
-          content: 'Transform your listening experience'
-        },
-        {
-          type: 'Reel',
-          platform: 'YouTube',
-          videoUrl: 'https://example.com/demo-video.mp4',
-          imageUrl: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500',
-          size: '1920x1080',
-          content: 'See the product in action'
-        }
-      ],
+      images: getProductImages(content.selectedDemo),
+      marketingMaterials: getProductMarketingMaterials(content.selectedDemo),
       sources: {
         manufacturer: {
-          name: 'AudioTech Pro Industries',
-          website: 'https://audiotechpro.com',
-          description: 'Leading manufacturer of premium audio equipment with over 15 years of experience in creating professional-grade consumer electronics.',
+          name: selectedProduct ? `${selectedProduct.brand} Industries` : 'AudioTech Pro Industries',
+          website: 'https://example.com',
+          description: `Leading manufacturer of premium ${selectedProduct?.category.toLowerCase() || 'consumer'} products with over 15 years of experience in creating professional-grade consumer electronics.`,
           founded: '2008',
           headquarters: 'San Francisco, CA'
         },
@@ -158,17 +103,6 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
   }; 
 
   const richContent = getRichContent();
-
-  // Convert markdown-style text to React components
-<div className="prose prose-sm sm:prose lg:prose-lg prose-gray max-w-none text-gray-600">
-  <ReactMarkdown
-    children={content.longDescription}
-    remarkPlugins={[remarkGfm]}
-    rehypePlugins={[rehypeRaw]}
-  />
-</div>
-
-
 
   return (
     <div className="max-w-7xl mx-auto space-y-6">
@@ -251,17 +185,13 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-<div className="prose prose-sm sm:prose lg:prose-lg prose-gray max-w-none text-gray-600">
-  <ReactMarkdown
-    children={content.longDescription}
-    remarkPlugins={[remarkGfm]}
-    rehypePlugins={[rehypeRaw]}
-  />
-
-  
-
-</div>
-
+              <div className="prose prose-sm sm:prose lg:prose-lg prose-gray max-w-none text-gray-600">
+                <ReactMarkdown
+                  children={content.longDescription}
+                  remarkPlugins={[remarkGfm]}
+                  rehypePlugins={[rehypeRaw]}
+                />
+              </div>
             </CardContent>
           </Card>
         </div>
