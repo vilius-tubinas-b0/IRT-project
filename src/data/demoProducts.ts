@@ -24,384 +24,482 @@ export interface MarketingMaterial {
 export const demoProducts: DemoProduct[] = [
   {
     id: 'stanley-tumbler',
-    title: 'Stanley IceFlow™ Flip Straw Tumbler 30oz',
-    description: 'Durable, stylish water bottle with built-in straw and double-wall vacuum insulation',
-    brand: 'Stanley',
-    category: 'Drinkware',
+title: 'Stanley IceFlow™ gertuvė su šiaudeliu, 30 oz',
+  description: 'Patvari, stilinga gertuvė su integruotu šiaudeliu ir dviguba vakuumine izoliacija',
+  brand: 'Stanley',
+    category: 'Gertuvės',
     longDescription: `
-**Hydration that keeps up with your lifestyle.**
+**Hidratacija, kuri prisitaiko prie jūsų gyvenimo ritmo.**
 
-Whether you're conquering a hike, navigating your morning commute, or powering through back-to-back meetings, the **Stanley IceFlow™ Flip Straw Tumbler 30oz** is designed to deliver ice-cold refreshment from sunrise to sundown — and beyond.
-
----
-
-### 🧊 Built to Keep Things Ice-Cold — Literally
-
-Thanks to **Stanley's signature double-wall vacuum insulation**, this tumbler doesn't just keep water cool — it **preserves chill for up to 12 hours**, and with ice, your drink stays cold for **up to 48 hours**. That's two full days without ever needing a fridge. It's your portable glacier.
+Nesvarbu, ar keliaujate į darbą, kopiate į kalnus ar aktyviai leidžiate dieną, **Stanley IceFlow™ Flip Straw Tumbler 30oz** užtikrins, kad jūsų gėrimai išliktų maloniai šalti nuo ryto iki vakaro – ir dar ilgiau.
 
 ---
 
-### 💡 Designed with Real Life in Mind
+### 🧊 Sukurtas išlaikyti gaivą ilgiau
 
-From the **leak-resistant flip straw lid** to the **ergonomic built-in handle**, every detail is crafted for convenience:
-
-- **One-handed sipping** for workouts, driving, or multitasking
-- **30oz capacity** means fewer refills — perfect for all-day hydration
-- **Fits most car cup holders** (yes, even the shallow ones)
-- **Dishwasher safe** — no annoying hand-washing required
-- **Durable stainless steel** that survives drops, dents, and daily chaos
-
-No more plastic bottles. No more lukewarm water. Just crisp, cold hydration when you need it most.
+Dėl **Stanley dvigubos vakuuminės izoliacijos** jūsų vanduo nepraras vėsos net ir pačią karščiausią dieną. Be ledukų gėrimas išliks šaltas iki **12 valandų**, o su ledu – net iki **48 valandų**. Dvi paros gaivumo be jokių pastangų – tarsi mažas nešiojamas ledynas.
 
 ---
 
-### 🌍 Sustainable, Stylish, and Built to Last
+### 💡 Apgalvota kiekviena detalė
 
-Stanley's not new to the game. With **over 100 years of experience in high-performance gear**, they've built a reputation for reliability and eco-conscious design.
+Kiekvienas elementas sukurtas tam, kad naudojimas būtų kuo patogesnis:
 
-- Made from **18/8 recycled stainless steel**
-- **BPA-free and eco-safe**
-- Comes in a range of modern matte colors to match your vibe
-- Designed to last **a lifetime**, not a season
+- **Vienarankis gėrimas** – puikiai tinka vairuojant, sportuojant ar skubant
+- **30 oz talpa** – mažiau papildymų per dieną
+- **Tinka daugeliui automobilių puodelių laikiklių**
+- **Galima plauti indaplovėje**
+- **Patvarus nerūdijantis plienas**, atsparus įbrėžimams bei smūgiams
 
-Buying a Stanley isn't just about convenience — it's a choice for better design, lower waste, and long-term performance.
-
----
-
-### 🧳 Where It Goes, You Go
-
-At 30oz, it's big enough for serious hydration but still portable. Whether you're:
-
-- Hitting the gym or a long hike
-- Working long shifts
-- Heading to class or co-working
-- Traveling, camping, or road-tripping
-
-…the IceFlow goes with you. It's made to **move**, not sit on a shelf.
+Jokių plastikinių butelių. Jokių drungnų gėrimų. Tik nuolatinė gaiva tada, kai jos labiausiai reikia.
 
 ---
 
-### 🙋‍♀️ Still wondering?
+### 🌍 Ilgaamžis ir draugiškas aplinkai
 
-**Will it leak in my bag?**  
-Nope — the flip straw locks down securely.
+**Stanley** – daugiau nei šimto metų patikrinta kokybė, kurią renkasi milijonai. Šis modelis:
 
-**Will it fit in my cup holder?**  
-Yep — even compact ones.
+- Pagamintas iš **perdirbto 18/8 nerūdijančio plieno**
+- **BPA neturintis**, saugus sveikatai
+- Galite rinktis iš įvairių modernių matinio dizaino spalvų
+- Sukurtas tarnauti ilgus metus, o ne vieną sezoną
 
-**Can I put smoothies or coffee in it?**  
-Cold drinks only. (No hot liquids with the straw lid!)
-
-**How heavy is it?**  
-Light enough to carry comfortably — around 0.6kg when full.
-
-**What if I drop it?**  
-It's Stanley. It can take it.
+Rinkdamiesi Stanley, investuojate į patogumą, mažesnį poveikį aplinkai ir patikrintą patvarumą.
 
 ---
 
-**Join millions who trust Stanley.**
+### 🧳 Visur kartu su jumis
 
-The IceFlow Flip Straw Tumbler is more than just a trend — it's a lifestyle upgrade. If you're ready for a hydration companion that works as hard as you do, you just found it.
+30 oz talpa leis pasirūpinti pakankamu kiekiu vandens, o kompaktiškas dizainas užtikrins, kad gertuvę patogiai pasiimsite į bet kokią kelionę. Puikiai tinka:
+
+- Sporto salėje ar ilguose žygiuose
+- Ilgose darbo pamainose
+- Paskaitose ir kelionėse
+- Išvykose, stovyklaujant ar keliaujant automobiliu
+
+...**IceFlow** sukurta judėti kartu su jumis – ne stovėti lentynoje.
+
+---
+
+### 🙋‍♀️ Dažniausiai užduodami klausimai
+
+**Ar gertuvė nepraleis maiše?**  
+Ne – sandarus dangtelis užtikrina apsaugą nuo išsiliejimo.
+
+**Ar ji tilps į puodelių laikiklį automobilyje?**  
+Taip – tinka daugeliui modelių.
+
+**Ar galima pilti karštus gėrimus?**  
+Tik šaltus – karštiems gėrimams ši konstrukcija netinka.
+
+**Kiek sveria?**  
+Pilnai pripildyta – apie 0,6 kg.
+
+**Kas, jei netyčia numesiu?**  
+Tai Stanley – ji sukurta atlaikyti kasdienį naudojimą.
+
+---
+
+**Prisijunkite prie milijonų Stanley gerbėjų.**
+
+IceFlow Flip Straw Tumbler – tai ne vien madinga detalė, o patikimas partneris kiekvieną dieną. Jei ieškote gertuvės, kuri tarnautų taip pat ištvermingai kaip ir jūs, – ją ką tik radote.
 `,
-    features: [
-      '30oz capacity with leak-resistant flip straw lid',
-      'Double-wall vacuum insulation (keeps drinks cold for 12–48 hours)',
-      '18/8 recycled stainless steel construction',
-      'Built-in handle and ergonomic design',
-      'Fits most standard cup holders',
-      'Dishwasher safe and BPA-free',
-      'Available in a variety of matte finishes'
-    ],
+features: [
+  '30 oz talpa su sandariu dangteliu ir integruotu šiaudeliu',
+  'Dviguba vakuuminė izoliacija (gėrimai išlieka šalti 12–48 val.)',
+  'Pagaminta iš perdirbto 18/8 nerūdijančio plieno',
+  'Integruota rankena ir ergonomiškas dizainas',
+  'Tinka daugeliui standartinių automobilio laikiklių',
+  'Galima plauti indaplovėje, be BPA',
+  'Galimi įvairūs modernūs matiniai atspalviai'
+],
     images: [
-      'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500',
-      'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=500',
-      'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500',
-      'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500'
+      'https://img.kavosdraugas.lt/3f229155-2dcf-474a-9414-55d5054f64e1/1000x1000/iceflowlilac4png.jpg',
+      'https://new.ksd-images.lt/display?path=aikido/cache/024ef9b07cde4e94ee2197726bd83f6a.jpeg&op=noop',
+      'https://i8.amplience.net/i/jpl/jd_755873_a?qlt=92&w=600&h=765&v=1&fmt=auto',
+      'https://xcdn.next.co.uk/common/items/default/default/itemimages/3_4Ratio/product/lge/AB2864s.jpg?im=Resize,width=750'
     ],
-    marketingMaterials: [
-      {
-        type: 'Email Subject Lines',
-        items: [
-          '🥤 New Arrival: Stanley IceFlow™ Tumbler - Limited Time 20% Off!',
-          '✨ Stay Hydrated in Style - Stanley IceFlow™ Now Available',
-          '🔥 Last Chance: Premium Stanley Tumbler - 48Hr Ice Cold Guarantee',
-          'Transform Your Hydration Game with Stanley IceFlow™',
-          'Stanley IceFlow™: The Tumbler That Changed Everything'
-        ]
-      },
-      {
-        type: 'Social Media Captions',
-        platform: 'Instagram',
-        items: [
-          '✨ Introducing the Stanley IceFlow™ Flip Straw Tumbler 💧\n\nKeep your drinks ice-cold for up to 48 hours. Perfect for every adventure.\n\n#Stanley #Hydration #IceCold',
-          '🧊 Ready to upgrade your hydration? The Stanley IceFlow™ is here to keep you refreshed all day long.\n\n#StayHydrated #Stanley #PremiumQuality',
-          'From sunrise workouts to late-night study sessions, the Stanley IceFlow™ delivers crisp, cold refreshment when you need it most.\n\n#Stanley #Lifestyle #Hydration'
-        ]
-      },
-      {
-        type: 'Product Tags',
-        content: 'stanley tumbler, insulated water bottle, flip straw tumbler, 30oz water bottle, vacuum insulation, leak resistant, dishwasher safe, BPA free, ice cold drinks, hydration bottle'
-      },
-      {
-        type: 'Story',
-        platform: 'Instagram',
-        imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500',
-        size: '1080x1920',
-        content: 'Swipe up for ice-cold hydration'
-      },
-      {
-        type: 'Post',
-        platform: 'Instagram',
-        imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500',
-        size: '1080x1080',
-        content: 'Stay hydrated, stay cool'
-      }
+marketingMaterials: [
+  {
+    type: 'El. laiško temos',
+    items: [
+      '🥤 Nauja prekė: Stanley IceFlow™ gertuvė – tik ribotą laiką -20% nuolaida!',
+      '✨ Stilinga hidratacija – Stanley IceFlow™ jau pas mus',
+      '🔥 Paskutinė proga: Premium Stanley gertuvė – iki 48 val. šaltis garantuotas',
+      'Atraskite tobulą hidrataciją su Stanley IceFlow™',
+      'Stanley IceFlow™: gertuvė, kuri viską pakeitė'
     ]
   },
   {
-    id: 'the-ordinary-niacinamide',
-    title: 'Niacinamide 10% + Zinc 1% Serum',
-    description: 'Clinical-strength serum designed to visibly reduce blemishes and balance sebum activity',
-    brand: 'The Ordinary',
-    category: 'Skincare',
-    longDescription: `
-**Clinical skincare that actually works.**
-
-The Ordinary's **Niacinamide 10% + Zinc 1%** is a high-strength vitamin and mineral blemish formula that targets multiple skin concerns with clinical precision.
-
----
-
-### 🧪 Science-Backed Formula
-
-- **10% Niacinamide (Vitamin B3)** reduces appearance of skin blemishes and signs of congestion
-- **1% Zinc PCA** helps balance visible aspects of sebum activity
-- **Water-based serum** absorbs quickly without pilling
-- **Vegan and cruelty-free** formulation
-
----
-
-### ✨ Visible Results
-
-Regular use helps improve:
-- Skin texture and smoothness
-- Appearance of enlarged pores
-- Uneven skin tone
-- Excess oil production
-- Overall skin clarity
-
----
-
-### 💧 How to Use
-
-Apply to entire face morning and evening before heavier creams. Can be mixed with other treatments, but avoid vitamin C in the same routine.
-
-Perfect for oily, combination, and acne-prone skin types seeking effective, affordable skincare solutions.
-`,
-    features: [
-      '10% Niacinamide for blemish reduction',
-      '1% Zinc PCA for oil control',
-      'Water-based, fast-absorbing formula',
-      'Suitable for daily use',
-      'Vegan and cruelty-free',
-      'Fragrance-free formulation',
-      'Clinical strength concentration'
-    ],
-    images: [
-      'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=500',
-      'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500',
-      'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500',
-      'https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=500'
-    ],
-    marketingMaterials: [
-      {
-        type: 'Email Subject Lines',
-        items: [
-          '🧪 Clinical Skincare: The Ordinary Niacinamide - 25% Off Today',
-          '✨ Clear Skin Starts Here - Niacinamide 10% + Zinc 1%',
-          '🌟 Blemish-Free Skin in 4 Weeks - Science-Backed Results',
-          'The Ordinary Niacinamide: Your Skin\'s New Best Friend',
-          '💧 Oil Control + Pore Minimizing - One Powerful Serum'
-        ]
-      },
-      {
-        type: 'Social Media Captions',
-        platform: 'Instagram',
-        items: [
-          '🧪 Science meets skincare ✨\n\nThe Ordinary Niacinamide 10% + Zinc 1% - clinical strength results without the clinical price.\n\n#TheOrdinary #Niacinamide #Skincare',
-          '💧 Oily skin? Large pores? Blemishes? This serum tackles it all.\n\nNiacinamide 10% + Zinc 1% for clearer, balanced skin.\n\n#SkincareRoutine #ClearSkin #TheOrdinary',
-          'From congested to clear in weeks, not months. The power of 10% Niacinamide is real.\n\n#SkincareResults #TheOrdinary #GlowUp'
-        ]
-      }
+    type: 'Soc. medijos antraštės',
+    platform: 'Instagram',
+    items: [
+      '✨ Pristatome Stanley IceFlow™ gertuvę su šiaudeliu 💧\n\nLaikykite gėrimus ledinius iki 48 valandų. Tobula kiekvienai kelionei.\n\n#Stanley #Hidratacija #LedinisGaivumas',
+      '🧊 Pasiruošę naujam hidratacijos lygiui? Stanley IceFlow™ pasirūpins gaivumu visą dieną.\n\n#BūkHidratavęs #Stanley #AukštaKokybė',
+      'Nuo rytinių treniruočių iki vėlyvų studijų vakarų – Stanley IceFlow™ užtikrina šaltą gaivą, kai jos labiausiai reikia.\n\n#Stanley #GyvenimoStilius #Hidratacija'
     ]
   },
   {
-    id: 'baltic-candle',
-    title: 'Baltic Sea Scented Candle — Hand-Poured in Klaipėda',
-    description: 'Locally crafted soy wax candle inspired by sea breeze, pine, and amber resin',
-    brand: 'Klaipėda Home',
-    category: 'Home Fragrance',
-    longDescription: `
-**Bring the Baltic coast into your home.**
-
-Hand-poured in the historic port city of Klaipėda, this **Baltic Sea Scented Candle** captures the essence of Lithuania's stunning coastline in every flicker.
-
----
-
-### 🌊 Inspired by Nature
-
-Our master candle makers blend:
-- **Fresh sea breeze** - crisp, oceanic top notes
-- **Baltic pine** - warm, woody heart notes  
-- **Ancient amber resin** - rich, golden base notes
-
-The result? A complex, sophisticated fragrance that transports you to windswept dunes and pine forests meeting the sea.
-
----
-
-### 🕯️ Artisan Craftsmanship
-
-- **100% natural soy wax** from sustainable sources
-- **Hand-poured in small batches** for quality control
-- **Cotton wick** for clean, even burning
-- **50+ hour burn time** for lasting enjoyment
-- **Recyclable glass vessel** with minimalist design
-
----
-
-### 🏠 Perfect For
-
-Create ambiance for:
-- Cozy evening relaxation
-- Meditation and mindfulness
-- Dinner parties and gatherings  
-- Reading nooks and studies
-- Bathroom spa experiences
-
-Each candle comes with a brief history of Klaipėda and the inspiration behind this unique Baltic fragrance blend.
-`,
-    features: [
-      'Hand-poured 100% soy wax construction',
-      'Unique Baltic Sea-inspired fragrance blend',
-      'Cotton wick for clean burning',
-      '50+ hour burn time',
-      'Recyclable glass vessel',
-      'Made in Klaipėda, Lithuania',
-      'Small batch artisan production'
-    ],
-    images: [
-      'https://images.unsplash.com/photo-1602874801883-4c6d0c49c8e8?w=500',
-      'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=500',
-      'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=500',
-      'https://images.unsplash.com/photo-1509909756405-be0199881695?w=500'
-    ],
-    marketingMaterials: [
-      {
-        type: 'Email Subject Lines',
-        items: [
-          '🕯️ Baltic Sea Ambiance - Hand-Poured Candles from Lithuania',
-          '🌊 New Arrival: Authentic Baltic Coast Fragrance - Limited Stock',
-          '✨ Bring Nordic Hygge Home - Baltic Sea Scented Candles',
-          'Hand-Crafted in Klaipėda - Baltic Sea Candle Collection',
-          '🏠 Transform Your Space with Authentic Baltic Fragrance'
-        ]
-      },
-      {
-        type: 'Social Media Captions',
-        platform: 'Instagram',
-        items: [
-          '🌊 Close your eyes and breathe in the Baltic Sea ✨\n\nHand-poured in Klaipėda with love, sea breeze, pine, and amber resin.\n\n#BalticSea #HandPoured #Lithuania',
-          '🕯️ Each candle tells a story of the Lithuanian coast. What story will yours tell?\n\n#ArtisanCandles #BalticVibes #KlaipedaHome',
-          'From the historic port of Klaipėda to your living room. Authentic Baltic fragrance in every flame.\n\n#Handmade #Lithuania #HomeFragrance'
-        ]
-      }
-    ]
+    type: 'Product Tags',
+    content: 'stanley gertuvė, termo gertuvė, gertuvė su šiaudeliu, 30oz gertuvė, vakuuminė izoliacija, sandari gertuvė, galima plauti indaplovėje, be BPA, lediniai gėrimai, hidratacijos butelis'
   },
   {
-    id: 'keyboard-slime',
-    title: 'Anti-Stress Keyboard Cleaner Slime — Blueberry Scented',
-    description: 'Novelty slime toy that cleans dust from keyboards while relieving stress',
-    brand: 'ZenGadget',
-    category: 'Accessories',
-    longDescription: `
-**Clean your keyboard. Clear your mind.**
-
-This **Anti-Stress Keyboard Cleaner Slime** isn't just a cleaning tool—it's a moment of zen in your busy workday.
-
----
-
-### 🧹 Dual-Purpose Design
-
-**Keyboard Cleaning Power:**
-- Reaches between keys where dust cloths can't
-- Picks up crumbs, dust, and debris effortlessly
-- Safe for all keyboard types (mechanical, membrane, laptop)
-- Reusable hundreds of times before replacement needed
-
-**Stress Relief Benefits:**
-- Satisfying tactile experience reduces anxiety
-- Perfect fidget tool for meetings and calls
-- Helps improve focus and concentration
-- Blueberry scent provides aromatherapy benefits
-
----
-
-### 🫐 Blueberry Bliss
-
-The subtle, sweet blueberry fragrance isn't overpowering—just enough to make cleaning enjoyable and provide a calming sensory experience.
-
----
-
-### 💼 Office Essential
-
-Perfect for:
-- Daily keyboard maintenance
-- Desk-side stress relief
-- Fidgeting during video calls
-- Gift for coworkers and tech enthusiasts
-- Anyone who spends hours at a computer
-
-**Pro tip:** Store in the included container to maintain optimal consistency and prevent drying out.
-
-Comes with simple usage instructions and storage container. Replace every 2-3 months with regular use.
-`,
-    features: [
-      'Dual-purpose cleaning and stress relief',
-      'Reaches between keyboard keys effectively',
-      'Pleasant blueberry scent',
-      'Safe for all keyboard types',
-      'Reusable hundreds of times',
-      'Includes storage container',
-      'Perfect desk fidget tool'
-    ],
-    images: [
-      'https://images.unsplash.com/photo-1587831990711-23ca6441447b?w=500',
-      'https://images.unsplash.com/photo-1616469829581-73993eb86930?w=500',
-      'https://images.unsplash.com/photo-1515378791036-0648a814c963?w=500',
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500'
-    ],
-    marketingMaterials: [
-      {
-        type: 'Email Subject Lines',
-        items: [
-          '🫐 Weird but Works: Blueberry Slime Cleans Your Keyboard Better',
-          '😌 Clean Keyboard + Stress Relief in One Oddly Satisfying Product',
-          '⌨️ The Keyboard Cleaner That Went Viral - Now with Blueberry Scent',
-          'ZenGadget Slime: Your Desk\'s New Favorite Weird Thing',
-          '🧹 Finally, a Fun Way to Clean Your Gross Keyboard'
-        ]
-      },
-      {
-        type: 'Social Media Captions',
-        platform: 'Instagram',
-        items: [
-          '🫐 POV: Cleaning your keyboard is actually satisfying now ✨\n\nBlueberry-scented slime that cleans AND destresses. Weird? Yes. Effective? Also yes.\n\n#KeyboardCleaning #OddlySatisfying #DeskAccessories',
-          '⌨️ Your keyboard is grosser than you think. This slime makes cleaning it... fun?\n\n#TechCleaning #StressRelief #ZenGadget',
-          'Fidget toy meets cleaning tool. The crossover we didn\'t know we needed.\n\n#ProductReview #StressRelief #KeyboardCare'
-        ]
-      }
-    ]
+    type: 'Story',
+    platform: 'Instagram',
+    imageUrl: 'https://eu.stanley1913.com/cdn/shop/files/Large_JPG-STANLEY_ICEFLOW_FLIPSTRAWTUMBLER0.89L-CITRON_LIFESTYLE_1_1.jpg?v=1749204473&width=600',
+    size: '1080x1920',
+    content: 'Perbraukite ir atraskite ledinį gaivumą'
+  },
+  {
+    type: 'Post',
+    platform: 'Instagram',
+    imageUrl: 'https://imageseu.urbndata.com/is/image/UrbanOutfittersEU/0533352910110_066_b?$xlarge$&fit=constrain&qlt=80&wid=640',
+    size: '1080x1080',
+    content: 'Būkite hidratuoti, būkite gaivūs'
   }
+]
+  },
+ {
+  id: 'the-ordinary-niacinamide',
+  title: 'Niacinamide 10% + Zinc 1% serumas',
+  description: 'Klinikinio stiprumo serumas, padedantis sumažinti spuogus ir subalansuoti riebalų išsiskyrimą',
+  brand: 'The Ordinary',
+  category: 'Veido priežiūra',
+  longDescription: `
+**Klinikinė odos priežiūra, kuria pasitiki milijonai visame pasaulyje.**
+
+The Ordinary **Niacinamide 10% + Zinc 1% serumas** – tai intensyvaus poveikio formulė, padedanti kovoti su dažniausiomis odos problemomis: spuogais, riebalų pertekliumi, išsiplėtusiomis poromis ir nelygiu odos atspalviu. Dėl tikslingai parinktų veikliųjų medžiagų šis serumas užtikrina matomus rezultatus be sudėtingų priežiūros ritualų.
+
+Tai sprendimas, jungiantis mokslo pažangą ir paprastumą – visiems, kurie nori pastebimų pokyčių už prieinamą kainą.
+
+---
+
+### 🧪 Veikliųjų medžiagų galia
+
+Šio serumo pagrindą sudaro dvi ypač efektyvios medžiagos:
+
+- **10% niacinamidas (vitaminas B3)** padeda mažinti uždegiminius spuogelius, reguliuoja melanino išsiskyrimą, todėl suvienodina odos toną, šviesina dėmeles ir suteikia odai skaistumo.
+- **1% cinko PCA** mažina odos riebalavimąsi, ramina sudirgimus ir padeda palaikyti porų švarą.
+
+Lengvos, vandeningos konsistencijos serumas susigeria per kelias akimirkas ir nepalieka lipnumo ar sunkumo pojūčio. Formulė sukurta taip, kad būtų maksimaliai toleruojama ir jautresnei odai.
+
+Šis derinys yra vienas iš labiausiai dermatologų rekomenduojamų, kai reikia saugaus, kasdienio sprendimo probleminei odai.
+
+---
+
+### ✨ Matomi rezultatai
+
+Reguliariai naudojant šį serumą, daugelis pastebi reikšmingus pokyčius:
+
+- Mažėja nuolatiniai ar atsirandantys spuogai ir uždegiminės dėmelės.
+- Sumažėja riebalų perteklius, oda atrodo matiškesnė ir švaresnė.
+- Išsiplėtusios poros tampa mažiau matomos, oda įgauna lygesnę tekstūrą.
+- Suvienodėja tonas ir sumažėja po spuogų likę pėdsakai.
+
+Pirmieji rezultatai gali būti pastebimi jau po kelių savaičių, tačiau geriausių rezultatų pasiekiama naudojant ilgiau kaip 4–6 savaites.
+
+---
+
+### 💧 Naudojimas
+
+Kiekvieną rytą ir vakarą ant švarios, sausos odos užtepkite kelis lašus serumo. Švelniai paskirstykite per visą veidą, ypač ten, kur pastebite didesnį riebumą ar spuogus. 
+
+Leiskite produktui visiškai įsigerti, tada tęskite įprastą drėkinamųjų priemonių ir apsaugos nuo saulės naudojimą. 
+
+**Svarbu:** jei naudojate vitamino C produktus, tepkite juos kitu paros metu (pavyzdžiui, ryte), o niacinamidą – vakare, nes šios medžiagos gali mažinti viena kitos efektyvumą.
+
+---
+
+### 🌿 Kam tinka?
+
+Šis serumas ypač rekomenduojamas:
+
+- Riebiai ir mišriai odai su polinkiu į spuogus ar inkštirus.
+- Oda su išsiplėtusiomis poromis ir nelygia tekstūra.
+- Tiems, kurie ieško moksliškai pagrįsto, paprasto ir prieinamo būdo pagerinti odos būklę be sudėtingų procedūrų.
+
+Formulė be kvapiųjų medžiagų, veganiška ir netestuota su gyvūnais, todėl ją renkasi įvairaus amžiaus žmonės, vertinantys skaidrią sudėtį ir veiksmingumą.
+
+---
+
+### 🙋‍♀️ Dažniausiai užduodami klausimai
+
+**Ar šį serumą galima naudoti jautriai odai?**  
+Taip, formulė be kvapiųjų medžiagų ir alkoholio, tačiau jei jūsų oda itin jautri, rekomenduojama pirmiausia atlikti mažą tolerancijos testą.
+
+**Ar galima naudoti kartu su kitomis priemonėmis?**  
+Galima, tačiau niacinamidą geriausia atskirti nuo stipraus vitamino C (askorbo rūgšties) produktų, kad abu ingredientai neprarastų efektyvumo.
+
+**Kaip greitai matomi rezultatai?**  
+Pirmieji pagerėjimo požymiai – lygesnė tekstūra, mažesnis riebumas – dažnai pastebimi po 2–4 savaičių reguliaraus naudojimo.
+
+**Ar serumas tinka paaugliams?**  
+Taip, ši formulė saugi ir dažnai rekomenduojama jaunai odai su polinkiu į spuogus.
+
+**Ar jis palieka lipnumo pojūtį?**  
+Ne, vandens pagrindo tekstūra greitai susigeria ir nepalieka riebumo.
+
+---
+
+**Atraskite veiksmingą odos priežiūrą be kompromisų – The Ordinary Niacinamide 10% + Zinc 1% serumas padės pasiekti skaistesnę, sveikesnę odą kiekvieną dieną.**
+
+`,
+  features: [
+    '10% niacinamidas spuogų mažinimui',
+    '1% cinko PCA riebalų kontrolei',
+    'Vandens pagrindo, greitai įsigerianti formulė',
+    'Tinka kasdieniam naudojimui',
+    'Veganiška ir netestuota su gyvūnais',
+    'Be kvapiųjų medžiagų',
+    'Klinikinio stiprumo koncentracija'
+  ],
+  images: [
+    'https://plasmapen.com/wp-content/uploads/2021/10/2-4.png',
+    'https://i.ytimg.com/vi/bZ2hyddo6qM/maxresdefault.jpg',
+    'https://photos-us.bazaarvoice.com/photo/2/cGhvdG86ZGVjaWVt/cf209c95-276a-5456-b811-6dadb34b44dc',
+    'https://static.sweetcare.com/img/prd/488/v-504911232000000000/the-ordinary-017605td-3.webp',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-WClz0fq_pIWrUdmTAOjPEKXYI9jhGHJQ6w&s',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbHhYSVxSn1TOrov8mruG-IdAiNsjvuompRg&s',
+  ],
+  marketingMaterials: [
+    {
+      type: 'El. laiško temos',
+      items: [
+        '🧪 Klinikinė odos priežiūra: The Ordinary Niacinamide – šiandien -25%',
+        '✨ Skaisti oda prasideda čia – Niacinamide 10% + Zinc 1%',
+        '🌟 Skaistesnė oda per 4 savaites – moksliškai pagrįsti rezultatai',
+        'The Ordinary Niacinamide: jūsų odos naujas geriausias draugas',
+        '💧 Riebalų kontrolė ir porų mažinimas – viename serume'
+      ]
+    },
+    {
+      type: 'Soc. medijos antraštės',
+      platform: 'Instagram',
+      items: [
+        '🧪 Mokslas susitinka su odos priežiūra ✨\n\nThe Ordinary Niacinamide 10% + Zinc 1% – klinikinis efektyvumas be didelės kainos.\n\n#TheOrdinary #Niacinamide #VeidoPriežiūra',
+        '💧 Riebi oda? Padidėjusios poros? Spuogai? Šis serumas padeda viskam.\n\nNiacinamide 10% + Zinc 1% – skaistesnei, subalansuotai odai.\n\n#OdosRutina #ŠvariOda #TheOrdinary',
+        'Nuo užsikimšusios iki švarios odos per kelias savaites, o ne mėnesius. 10% niacinamido galia yra tikra.\n\n#OdosRezultatai #TheOrdinary #GlowUp'
+      ]
+    }
+  ]
+},
+
+
+
+
+  {
+  id: 'baltic-candle',
+  title: 'Baltijos jūros kvapioji žvakė – rankų darbo Klaipėdoje',
+  description: 'Lietuvoje gaminama sojų vaško žvakė su jūros, pušų ir gintaro aromatu',
+  brand: 'Klaipėda Home',
+  category: 'Namų kvapai',
+  longDescription: `
+**Įsileiskite tikrą Baltijos pajūrio atmosferą į savo namus.**
+
+Rankomis liejama istoriniame Klaipėdos uostamiestyje, ši **Baltijos jūros kvapioji žvakė** sukurta taip, kad kiekvienas vakaras būtų ypatingas. Įkvėpta sūrių vėjų, pušynų tylos ir saulėje sušilusio gintaro kvapo, ši žvakė sukuria ramybės, jaukumo ir autentiškumo pojūtį.
+
+Tai daugiau nei kvapas – tai istorija, pasakojama per liepsną. Nuo pirmo uždegimo kambaryje tvyro gaivi pajūrio nuotaika, kuri pamažu pereina į šiltus, medienos kupinus tonus ir pasilieka sodriu gintaro šleifu. Tai subtili, bet įsimintina aromato kompozicija, kurią pamėgs kiekvienas, ieškantis kokybiškos namų atmosferos.
+
+---
+
+### 🌊 Įkvėpta Lietuvos gamtos
+
+Kvapas sukurtas iš kruopščiai suderintų natų, kurios primena pajūrio takus ir miško takelius:
+
+**Viršutinės natos** – šviežio jūros vėjo gaiva, primenanti sūrią bangų alsavimą.  
+**Vidurinės natos** – švelnūs Baltijos pušų aromatai, suteikiantys jaukumo ir ramybės.  
+**Bazinės natos** – sodrus gintaro dvelksmas, kuris užbaigia kompoziciją elegantišku šilumos akcentu.
+
+Kiekviena iš šių natų atsiskleidžia palaipsniui, sukurdama įspūdį, kad keliaujate Lietuvos pajūrio takais.
+
+---
+
+### 🕯️ Rankų darbo kokybė
+
+Mūsų meistrai gamina žvakes mažais kiekiais, užtikrindami, kad kiekvienas indelis atitiktų aukščiausius kokybės standartus. Naudojame tik natūralų sojų vašką iš tvarių šaltinių ir medvilninę dagtį, kad liepsna būtų lygi ir švari. 
+
+Kiekviena žvakė dega daugiau nei 50 valandų, todėl galėsite ilgai mėgautis išskirtiniu kvapu. Minimalistinio dizaino stiklinis indas lengvai derės bet kokio stiliaus interjere, o išdegtą pakuotę galėsite perdirbti arba pritaikyti antram gyvenimui – kaip vazelę ar smulkių daiktų laikiklį.
+
+---
+
+### 🏠 Kodėl verta išbandyti?
+
+Baltijos jūros žvakė puikiai tinka:
+
+- Ramiai vakarienei dviese ar su draugais
+- Jaukiam poilsio kampeliui ar meditacijai
+- Skaitymo vakarams, kai norisi ypatingo jaukumo
+- Namų SPA ritualams ar pasilepinimui karštoje vonioje
+
+Tai dovana sau ar brangiam žmogui, kuri primena, kaip gera grįžti prie paprastų, bet prasmingų dalykų – natūralios šviesos ir gamtos įkvėpto aromato.
+
+---
+
+### 🙋‍♀️ Dažniausiai užduodami klausimai
+
+**Ar žvakė yra visiškai natūrali?**  
+Taip, sudėtyje – 100% sojų vaškas, be parafino ir sintetinių kvapiklių. Aromatas sukurtas iš aukštos kokybės kvapiųjų aliejų.
+
+**Kiek laiko ji dega?**  
+Vidutiniškai žvakė dega daugiau nei 50 valandų, jei laikysitės rekomendacijų dėl dagties ilgio ir tinkamo naudojimo.
+
+**Ar kvapas labai stiprus?**  
+Kvapas išlaiko balansą – jis jaučiamas, bet nėra aštrus ar įkyrus, todėl tinka ir jautresniems nosiai.
+
+**Kur gaminama žvakė?**  
+Kiekviena partija rankomis liejama Klaipėdoje, Lietuvoje.
+
+---
+
+**Įkvėpkite Baltijos pakrantės dvelksmo – ši žvakė taps jūsų namų jaukumo simboliu.**
+
+`,
+  features: [
+    'Rankomis liejama iš 100% sojų vaško',
+    'Unikalus Baltijos jūros įkvėptas aromatas',
+    'Medvilninė dagtis švariam degimui',
+    'Dega ilgiau nei 50 valandų',
+    'Perdirbamas stiklinis indas',
+    'Pagaminta Klaipėdoje, Lietuvoje',
+    'Mažų partijų rankų darbo gamyba'
+  ],
+  images: [
+    '/images/candle1.png',
+    '/images/candle2.png',
+    '/images/candle3.png'
+  ],
+  marketingMaterials: [
+    {
+      type: 'El. laiško temos',
+      items: [
+        '🕯️ Baltijos jūros atmosfera – rankų darbo žvakės iš Lietuvos',
+        '🌊 Nauja – autentiškas Baltijos pakrantės kvapas, ribotas kiekis',
+        '✨ Sukurkite namuose skandinavišką jaukumą – Baltijos jūros žvakės',
+        'Rankų darbo Klaipėdoje – Baltijos jūros kvapų kolekcija',
+        '🏠 Paverskite namus autentišku Baltijos aromatu'
+      ]
+    },
+    {
+      type: 'Soc. medijos antraštės',
+      platform: 'Instagram',
+      items: [
+        '🌊 Užsimerkite ir įkvėpkite Baltijos jūros ✨\n\nRankų darbo Klaipėdoje su meile – jūros vėjo, pušų ir gintaro aromatas.\n\n#BaltijosJūra #RankųDarbo #Lietuva',
+        '🕯️ Kiekviena žvakė pasakoja Lietuvos pakrantės istoriją. Kokią istoriją pasakos jūsų žvakė?\n\n#RankųDarboŽvakės #BaltijosNuotaikos #KlaipėdaHome',
+        'Nuo istorinio Klaipėdos uosto iki jūsų namų – autentiškas Baltijos aromatas kiekviename liepsnos pliūpsnyje.\n\n#RankųDarbas #Lietuva #NamųKvapai'
+      ]
+    }
+  ]
+},
+
+{
+  id: 'keyboard-slime',
+  title: 'Anti-streso klaviatūros valymo gelis – mėlynių aromato',
+  description: 'Linksmas aksesuaras, kuris valo klaviatūrą ir padeda mažinti stresą',
+  brand: 'ZenGadget',
+  category: 'Aksesuarai',
+  longDescription: `
+**Išvalykite klaviatūrą. Išvalykite mintis.**
+
+Šis **anti-streso klaviatūros valymo gelis** – tai ne tik praktiškas įrankis dulkėms rinkti. Tai nedidelė atsipalaidavimo akimirka įtemptoje darbo dienoje, padedanti nusiraminti ir vėl susitelkti.
+
+---
+
+### 🧹 Dviguba nauda viename produkte
+
+Skirtingai nei paprastos servetėlės ar teptukai, valymo gelis pasiekia sunkiai prieinamas vietas tarp klavišų ir surenka visas smulkias dulkes bei trupinius. Tuo pat metu jo minkšta, tampri tekstūra padeda atsipalaiduoti, sumažinti nerimą ir pagerinti koncentraciją.
+
+**Valymo savybės:**
+
+- Pasiekia tarpus, kurių negali išvalyti šluostės ar teptukai
+- Suriša dulkes, trupinius, plaukus ir kitus nešvarumus
+- Tinka visų tipų klaviatūroms (mechaninėms, membraninėms, nešiojamų kompiuterių)
+- Naudojamas daug kartų iki pakeitimo
+
+**Streso mažinimo funkcija:**
+
+- Minkštas ir malonus liesti – puikiai tinka fidget žaidimams
+- Padeda nuraminti mintis per vaizdo skambučius ar ilgas darbo valandas
+- Prisideda prie susikaupimo ir produktyvumo
+- Švelnus mėlynių aromatas sukuria jaukią atmosferą
+
+---
+
+### 🫐 Mėlynių aromato malonumas
+
+Subtilus, saldus mėlynių kvapas nėra įkyrus – jis vos juntamas, bet pakankamas, kad valymas taptų malonesnis. Aromatas sukuria trumpą pertraukėlę nuo rutinos ir padeda grįžti prie darbo su nauja energija.
+
+---
+
+### 💼 Būtinas darbo stalo aksesuaras
+
+Šis produktas – puikus pasirinkimas kiekvienam, kas daug laiko praleidžia prie kompiuterio:
+
+- Kasdienei klaviatūros priežiūrai
+- Streso mažinimui ir nervingiems rankų judesiams
+- Smagiai pertraukai tarp užduočių
+- Dovanai kolegoms ar technologijų entuziastams
+- Tiems, kurie mėgsta tvarkingą darbo aplinką
+
+**Patarimas:** laikykite valymo gelį pridedamoje talpoje – taip jis išlaikys optimalų minkštumą ir nesudžius. Rekomenduojama keisti kas 2–3 mėnesius reguliariai naudojant.
+
+---
+
+### 🙋‍♀️ Dažniausiai užduodami klausimai
+
+**Ar gelis gali pažeisti klaviatūrą?**  
+Ne, produktas yra visiškai saugus ir neturi abrazyvių dalelių. Tiesiog nespauskite per stipriai.
+
+**Kaip dažnai reikia jį keisti?**  
+Su įprastu naudojimu – maždaug kas 2–3 mėnesius arba kai pastebite, kad gelis prarado lipnumą.
+
+**Ar kvapas labai stiprus?**  
+Kvapas švelnus, daugiau primenantis lengvą aromatą nei stiprų kvapiklį.
+
+**Ar tinka nešiojamo kompiuterio klaviatūrai?**  
+Taip, gelis puikiai prisitaiko prie bet kokio klavišų aukščio ir formos.
+
+---
+
+**Padarykite klaviatūros valymą ne tik paprasta prievole, bet ir smagia, raminančia rutina.**
+`,
+  features: [
+    'Dviguba funkcija – valymas ir streso mažinimas',
+    'Pasiekia tarpus tarp klavišų',
+    'Švelnus mėlynių aromatas',
+    'Saugus visų tipų klaviatūroms',
+    'Naudojamas daugybę kartų',
+    'Komplekte laikymo talpa',
+    'Puikus fidget aksesuaras darbo stalui'
+  ],
+  images: [
+    'https://www.computer.cleaning/media/Sticky-Clean-Glue-Gum-Gel-Computers-Keyboards-2.jpg',
+    'https://us1.discourse-cdn.com/spiceworks/original/4X/f/4/0/f40efadd1cf90219300699f003fe7c6df0edf88c.jpeg',
+    
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaiVobV0MFjhAmfkmZBHpWGKgJKxm8rlYCrg&s',
+    'https://kejanicleaning.co.ke/wp-content/uploads/2023/09/Dirt-Cleaning-Gel-Keyboard-Cleaning-Gel.jpg'
+  ],
+  marketingMaterials: [
+    {
+      type: 'El. laiško temos',
+      items: [
+        '🫐 Keistas, bet veiksmingas: mėlynių gelis jūsų klaviatūrai',
+        '😌 Švari klaviatūra + mažiau streso – viename netikėtame produkte',
+        '⌨️ Virusinis klaviatūros valiklis – dabar su mėlynių aromatu',
+        'ZenGadget gelis: keisčiausias (ir geriausias) jūsų stalo draugas',
+        '🧹 Galiausiai smagus būdas išvalyti nešvarią klaviatūrą'
+      ]
+    },
+    {
+      type: 'Soc. medijos antraštės',
+      platform: 'Instagram',
+      items: [
+        '🫐 Kai klaviatūros valymas tampa malonus ✨\n\nMėlynių aromato gelis, kuris valo IR ramina. Keista? Taip. Veiksminga? Irgi taip.\n\n#KlaviatūrosValymas #OddlySatisfying #StaloAksesuarai',
+        '⌨️ Jūsų klaviatūra – purvinesnė nei manote. Šis gelis padeda ją išvalyti… ir dar prajuokina.\n\n#TechValymas #StresoMažinimas #ZenGadget',
+        'Fidget žaislas ir valymo įrankis viename. Derinys, kurio net nesapnavome.\n\n#ProduktoApžvalga #StressRelief #KlaviatūrosPriežiūra'
+      ]
+    }
+  ]
+}
 ];
 
 export const getProductById = (id: string): DemoProduct | undefined => {

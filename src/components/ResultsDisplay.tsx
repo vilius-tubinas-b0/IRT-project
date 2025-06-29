@@ -112,7 +112,7 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
           className="flex items-center space-x-2"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Grįžti į formą</span>
+          <span>Grįžti atgal</span>
         </Button>
         
         <div className="flex space-x-2">
@@ -143,10 +143,7 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
             <CardContent className="p-8">
               <div className="space-y-6">
                 <div className="space-y-4">
-                  <h1 className="text-3xl font-bold text-gray-900 leading-tight">
-                    {content.title}
-                  </h1>
-                  <div className="flex flex-wrap gap-2">
+                                    <div className="flex flex-wrap gap-2">
                     <Badge variant="secondary" className="capitalize text-sm px-3 py-1">
                       {content.tone === 'professional' ? 'profesionalus' : 
                        content.tone === 'casual' ? 'laisvas' : 
@@ -158,6 +155,10 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
                       </Badge>
                     )}
                   </div>
+                  <h1 className="text-3xl font-bold text-gray-900 leading-tight">
+                    {content.title}
+                  </h1>
+
                   {content.shortDescription && (
                     <p className="text-base text-gray-700 leading-relaxed">
                       {content.shortDescription}
@@ -225,17 +226,58 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
           </Card>
 
           {/* Marketing Copy */}
-          <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
-            <CardContent className="p-6">
-              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">reklamos tekstas</h3>
-              <div className="space-y-2">
-                <MarketingMaterials 
-                  materials={richContent.marketingMaterials.filter(m => !m.imageUrl && !m.videoUrl).slice(0, 2)} 
-                  productTitle={content.title}
-                />
-              </div>
-            </CardContent>
-          </Card>
+{richContent.marketingMaterials
+  .filter(m => !m.imageUrl && !m.videoUrl)
+  .map((material, index) => (
+    <Card key={index} className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
+      <CardContent className="p-6 space-y-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+            {material.type}
+          </h3>
+          {material.platform && (
+            <Badge variant="secondary" className="capitalize">
+              {material.platform}
+            </Badge>
+          )}
+        </div>
+
+        {material.items ? (
+          <div className="space-y-3">
+            <div className="flex flex-wrap gap-2">
+              {material.items.map((item, itemIndex) => (
+<Button
+  variant="outline"
+  size="sm"
+  onClick={() => copyToClipboard(item)}
+  className="flex items-center h-auto p-3 text-left justify-between w-full"
+>
+  <span className="truncate">{item}</span>
+  <Copy className="w-3 h-3 flex-shrink-0 ml-2" />
+</Button>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <p className="text-gray-700 whitespace-pre-wrap text-sm">{material.content}</p>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => copyToClipboard(material.content)}
+              className="flex items-center space-x-2"
+            >
+              <Copy className="w-4 h-4" />
+              <span>Kopijuoti</span>
+            </Button>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  ))}
+
 
           {/* Market Analytics */}
           <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
@@ -267,7 +309,6 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
           <Sources 
             manufacturer={richContent.sources.manufacturer}
             competitors={richContent.sources.competitors}
-            marketInsights={richContent.sources.marketInsights}
           />
         </CardContent>
       </Card>

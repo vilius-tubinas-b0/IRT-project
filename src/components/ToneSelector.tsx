@@ -6,43 +6,42 @@ interface ToneSelectorProps {
   onToneChange: (tone: string) => void;
   disabled?: boolean;
 }
-
 const tones = [
   {
     id: 'professional',
-    name: 'Professional',
-    description: 'Formal, business-oriented language',
-    example: 'This premium product delivers exceptional performance...'
+    name: 'Profesionalus',
+    description: 'Oficiali, verslui skirta kalba',
+    example: 'Šis aukščiausios kokybės produktas užtikrina išskirtinį našumą...'
   },
   {
     id: 'casual',
-    name: 'Casual',
-    description: 'Friendly, conversational tone',
-    example: "You'll love how this amazing product makes life easier..."
+    name: 'Neformalus',
+    description: 'Draugiškas, pokalbio stiliaus tonas',
+    example: 'Jums patiks, kaip šis nuostabus produktas palengvina gyvenimą...'
   },
   {
     id: 'luxury',
-    name: 'Luxury',
-    description: 'Sophisticated, premium language',
-    example: 'Experience unparalleled elegance with this exquisite...'
+    name: 'Prabangus',
+    description: 'Rafinuota, aukštos kokybės kalba',
+    example: 'Patirkite neprilygstamą eleganciją su šiuo išskirtiniu produktu...'
   },
   {
     id: 'playful',
-    name: 'Playful',
-    description: 'Fun, energetic, and engaging',
-    example: 'Get ready to fall in love with this incredible...'
+    name: 'Žaismingas',
+    description: 'Linksmas, energingas ir įtraukiantis',
+    example: 'Pasiruoškite įsimylėti šį nepaprastą produktą...'
   },
   {
     id: 'technical',
-    name: 'Technical',
-    description: 'Detailed, specification-focused',
-    example: 'Featuring advanced engineering and precision manufacturing...'
+    name: 'Techninis',
+    description: 'Išsamus, technines specifikacijas akcentuojantis',
+    example: 'Sukurtas naudojant pažangią inžineriją ir precizišką gamybą...'
   },
   {
     id: 'minimalist',
-    name: 'Minimalist',
-    description: 'Clean, simple, direct language',
-    example: 'Essential. Functional. Perfect.'
+    name: 'Minimalistinis',
+    description: 'Švari, paprasta ir aiški kalba',
+    example: 'Esminis. Funkcionalus. Tobulas.'
   }
 ];
 

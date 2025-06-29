@@ -47,7 +47,7 @@ export const Sources = ({ manufacturer, competitors, marketInsights }: SourcesPr
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <Building className="w-5 h-5 text-green-600" />
-              <span>Manufacturer Information</span>
+              <span>Gamintojo informacija</span>
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
@@ -55,20 +55,20 @@ export const Sources = ({ manufacturer, competitors, marketInsights }: SourcesPr
               <h4 className="font-semibold text-gray-900">{manufacturer.name}</h4>
               <p className="text-sm text-gray-600 mt-1">{manufacturer.description}</p>
             </div>
-            
+
             <div className="flex flex-wrap gap-2">
               {manufacturer.founded && (
-                <Badge variant="outline">Founded {manufacturer.founded}</Badge>
+                <Badge variant="outline">Įkurta {manufacturer.founded}</Badge>
               )}
               {manufacturer.headquarters && (
                 <Badge variant="outline">{manufacturer.headquarters}</Badge>
               )}
             </div>
-            
+
             <Button variant="outline" size="sm" asChild>
               <a href={manufacturer.website} target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="w-4 h-4 mr-2" />
-                Visit Website
+                Žiūrėti svetainę
               </a>
             </Button>
           </CardContent>
@@ -114,11 +114,11 @@ export const Sources = ({ manufacturer, competitors, marketInsights }: SourcesPr
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
             <Users className="w-5 h-5 text-purple-600" />
-            <span>Competitor Analysis</span>
+            <span>Varžovų analizė</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
-         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
             {competitors.map((competitor, index) => (
               <Card key={index} className="overflow-hidden hover:shadow-md transition-shadow">
@@ -136,7 +136,7 @@ export const Sources = ({ manufacturer, competitors, marketInsights }: SourcesPr
                     </div>
                   </div>
                 )}
-                
+
                 <CardContent className="p-4 space-y-3">
                   <div className="flex items-center justify-between">
                     <h4 className="font-medium text-gray-900">{competitor.name}</h4>
@@ -146,23 +146,23 @@ export const Sources = ({ manufacturer, competitors, marketInsights }: SourcesPr
                       </a>
                     </Button>
                   </div>
-                  
+
                   {competitor.socialPost && (
                     <div className="space-y-3">
                       <p className="text-sm text-gray-700">
                         "{competitor.socialPost.content}"
                       </p>
-                      
-<div className="flex items-center space-x-4 text-sm text-gray-500">
-  <div className="flex items-center space-x-1">
-    <Heart className="w-4 h-4" />
-    <span>{competitor.socialPost.likes}</span>
-  </div>
-  <div className="flex items-center space-x-1">
-    <Eye className="w-4 h-4" />
-    <span>{competitor.socialPost.engagement}</span>
-  </div>
-</div>
+
+                      <div className="flex items-center space-x-4 text-sm text-gray-500">
+                        <div className="flex items-center space-x-1">
+                          <Heart className="w-4 h-4" />
+                          <span>{competitor.socialPost.likes}</span>
+                        </div>
+                        <div className="flex items-center space-x-1">
+                          <Eye className="w-4 h-4" />
+                          <span>{competitor.socialPost.engagement}</span>
+                        </div>
+                      </div>
 
 
                     </div>

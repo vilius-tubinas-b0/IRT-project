@@ -7,40 +7,41 @@ import { Search, Globe, ImageIcon, PenTool, CheckCircle } from 'lucide-react';
 const loadingSteps = [
   {
     id: 'search',
-    title: 'Searching for manufacturer information',
-    description: 'Finding official product pages and specifications',
+    title: 'Ieškoma gamintojo informacijos',
+    description: 'Randami oficialūs produktų puslapiai ir specifikacijos',
     icon: Search,
     duration: 800
   },
   {
     id: 'competitors',
-    title: 'Analyzing competitor landscape',
-    description: 'Discovering similar products and market positioning',
+    title: 'Analizuojama konkurentų aplinka',
+    description: 'Ieškoma panašių produktų ir jų pozicionavimo rinkoje',
     icon: Globe,
     duration: 1000
   },
   {
     id: 'social',
-    title: 'Collecting social media insights',
-    description: 'Finding trending posts and engagement data',
+    title: 'Renkama informacija iš socialinių tinklų',
+    description: 'Ieškoma populiarių įrašų ir sąveikos duomenų',
     icon: ImageIcon,
     duration: 700
   },
   {
     id: 'images',
-    title: 'Generating product images',
-    description: 'Creating high-quality marketing visuals',
+    title: 'Generuojamos produkto nuotraukos',
+    description: 'Kuriami aukštos kokybės rinkodaros vizualai',
     icon: ImageIcon,
     duration: 1900
   },
   {
     id: 'content',
-    title: 'Writing product descriptions',
-    description: 'Crafting compelling copy and marketing materials',
+    title: 'Rašomi produkto aprašymai',
+    description: 'Ruošiamas įtraukiantis tekstas ir rinkodaros medžiaga',
     icon: PenTool,
     duration: 600
   }
 ];
+
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -94,17 +95,17 @@ useEffect(() => {
       <div className="w-full max-w-3xl p-8 space-y-10">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-2">
-              Generating Your Product Content
+              Generuojamas jūsų produkto turinys
             </h2>
             <p className="text-gray-600">
-              Our AI is working hard to create the perfect description for your product
+             Mūsų DI kuria tobulą jūsų produkto aprašymą
             </p>
           </div>
 
           <div className="space-y-6">
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
-                <span className="text-gray-600">Overall Progress</span>
+                <span className="text-gray-600">Bendra pažanga</span>
                 <span className="font-medium">{Math.round(progress)}%</span>
               </div>
               <Progress value={progress} className="h-3 border border-gray-300 bg-white shadow-sm" />

@@ -77,7 +77,6 @@ export const MarketingMaterials = ({ materials, productTitle }: MarketingMateria
       {/* Marketing Copy with Chips */}
       {copyMaterials.length > 0 && (
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900">Reklamos tekstas</h3>
           <div className="space-y-6">
             {copyMaterials.map((material, index) => (
               <Card key={index} className="border-l-4 border-l-blue-500">

@@ -25,8 +25,8 @@ export const ProductForm = ({ onGenerate, selectedDemo, formData, onFormDataChan
     
     if (!selectedDemo) {
       toast({
-        title: "Demo Version Only",
-        description: "Please select a demo product from the controls at the bottom of the page.",
+        title: "Tik demonstracinė versija",
+        description: "Prašome pasirinkti demonstracinį produktą puslapio apačioje esančiuose valdikliuose.",
         variant: "destructive",
       });
       return;
@@ -34,8 +34,8 @@ export const ProductForm = ({ onGenerate, selectedDemo, formData, onFormDataChan
 
     if (!formData.title.trim()) {
       toast({
-        title: "Error",
-        description: "Product title is required",
+        title: "Klaida",
+        description: "Produkto pavadinimas yra privalomas",
         variant: "destructive",
       });
       return;
@@ -56,14 +56,14 @@ export const ProductForm = ({ onGenerate, selectedDemo, formData, onFormDataChan
       <CardHeader className="text-center pb-6">
                 {selectedDemo && (
           <div className="inline-flex items-center px-3 py-3 rounded-sm bg-green-100 text-green-700 text-sm">
-            Demo product selected: {formData.title}
+            Pasirinktas demo produktas: {formData.title}
           </div>
         )}
         <CardTitle className="text-2xl font-semibold text-gray-800">
-          Product Information
+          Produkto informacija
         </CardTitle>
         <p className="text-gray-600 mb-4">
-          Enter your product details below
+          Suveskite detales apie jūsų produktą
         </p>
 
       </CardHeader>
@@ -73,13 +73,13 @@ export const ProductForm = ({ onGenerate, selectedDemo, formData, onFormDataChan
                     {/* Product Title - Required */}
           <div className="space-y-2">
             <Label htmlFor="title" className="text-sm font-medium">
-              Product Title <span className="text-red-500">*</span>
+              Produkto pavadinimas <span className="text-red-500">*</span>
             </Label>
             <Input
               id="title"
               value={formData.title}
               onChange={(e) => updateFormData('title', e.target.value)}
-              placeholder="Enter your product title"
+              placeholder="Įveskite produkto pavadinimą"
               className="transition-all duration-200 focus:ring-2 focus:ring-blue-500"
               required
               disabled={!selectedDemo}
@@ -89,14 +89,14 @@ export const ProductForm = ({ onGenerate, selectedDemo, formData, onFormDataChan
           {/* Product URL */}
           <div className="space-y-2">
             <Label htmlFor="productUrl" className="text-sm font-medium">
-              Product URL <span className="text-gray-400">(optional)</span>
+              Produkto nuoroda <span className="text-gray-400">(neprivaloma)</span>
             </Label>
             <Input
               id="productUrl"
               type="url"
               value={formData.productUrl}
               onChange={(e) => updateFormData('productUrl', e.target.value)}
-              placeholder="https://example.com/product"
+              placeholder="https://pavyzdys.lt/product"
               className="transition-all duration-200 focus:ring-2 focus:ring-blue-500"
               disabled={!selectedDemo}
             />
@@ -105,7 +105,7 @@ export const ProductForm = ({ onGenerate, selectedDemo, formData, onFormDataChan
           {/* Image Upload */}
           <div className="space-y-2">
             <Label className="text-sm font-medium">
-              Product Images <span className="text-gray-400">(optional)</span>
+              Produkto nuotraukos <span className="text-gray-400">(neprivaloma)</span>
             </Label>
             <ImageUpload
               images={formData.images}
@@ -118,13 +118,13 @@ export const ProductForm = ({ onGenerate, selectedDemo, formData, onFormDataChan
           <div className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="brand" className="text-sm font-medium">
-                Brand Name <span className="text-gray-400">(optional)</span>
+                Prekinis ženklas <span className="text-gray-400">(neprivaloma)</span>
               </Label>
               <Input
                 id="brand"
                 value={formData.brand}
                 onChange={(e) => updateFormData('brand', e.target.value)}
-                placeholder="Your Brand Name"
+                placeholder="Prekinio ženklo pavadinimas"
                 className="transition-all duration-200 focus:ring-2 focus:ring-blue-500"
                 disabled={!selectedDemo}
               />
@@ -138,7 +138,7 @@ export const ProductForm = ({ onGenerate, selectedDemo, formData, onFormDataChan
                 disabled={!selectedDemo}
               />
               <Label htmlFor="includeBrand" className="text-sm">
-                Include brand information in description
+                Įtraukti prekinio ženklo informaciją į aprašymą
               </Label>
             </div>
           </div>
@@ -148,13 +148,13 @@ export const ProductForm = ({ onGenerate, selectedDemo, formData, onFormDataChan
           {/* Product Description */}
           <div className="space-y-2">
             <Label htmlFor="description" className="text-sm font-medium">
-              Short Description <span className="text-gray-400">(optional)</span>
+              Trumpas aprašymas <span className="text-gray-400">(neprivaloma)</span>
             </Label>
             <Textarea
               id="description"
               value={formData.description}
               onChange={(e) => updateFormData('description', e.target.value)}
-              placeholder="Brief description of your product..."
+              placeholder="Trumpas jūsų aprašymo aprašymas..."
               rows={3}
               className="transition-all duration-200 focus:ring-2 focus:ring-blue-500 resize-none"
               disabled={!selectedDemo}
@@ -163,7 +163,7 @@ export const ProductForm = ({ onGenerate, selectedDemo, formData, onFormDataChan
 
           {/* Tone Selection */}
           <div className="space-y-2">
-            <Label className="text-sm font-medium">Writing Tone</Label>
+            <Label className="text-sm font-medium">Rašymo tonas</Label>
             <ToneSelector
               selectedTone={formData.tone}
               onToneChange={(tone) => updateFormData('tone', tone)}
@@ -177,13 +177,13 @@ export const ProductForm = ({ onGenerate, selectedDemo, formData, onFormDataChan
             disabled={!selectedDemo}
             className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 text-lg transition-all duration-200 shadow-lg hover:shadow-xl"
           >
-            Generate Product Description
+            Kurti produkto aprašymą
           </Button>
 
           {!selectedDemo && (
             <div className="text-center">
               <p className="text-sm text-amber-600 bg-amber-50 p-4 rounded-lg border border-amber-200">
-                👇 Please select a demo product from the controls at the bottom of the page to get started.
+                👇 Pasirinkite demonstracinį produktą apačioje esančiuose valdikliuose, kad pradėtumėte.
               </p>
             </div>
           )}

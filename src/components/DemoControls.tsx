@@ -34,7 +34,7 @@ export const DemoControls = ({ selectedDemo, onDemoSelect }: DemoControlsProps) 
             <div className="flex items-center space-x-2">
               <Cog className="w-4 h-4 text-amber-600" />
               <CardTitle className="text-sm font-medium text-amber-800">
-                Demo Controls - Select a Product to Test
+                Demonstraciniai valdikliai – Pasirinkite produktą testavimui
               </CardTitle>
               {selectedDemo && (
                 <Badge variant="secondary" className="bg-green-100 text-green-700 text-xs">
@@ -66,27 +66,34 @@ export const DemoControls = ({ selectedDemo, onDemoSelect }: DemoControlsProps) 
                   }`}
                   onClick={() => handleDemoSelect(product.id)}
                 >
-                  <CardContent className="p-4">
-                    <div className="space-y-2">
-                      <div className="flex items-start justify-between">
-                        <h3 className="font-medium text-gray-900 text-sm leading-tight">
-                          {product.title}
-                        </h3>
-                        <Badge variant="outline" className="text-xs ml-2 flex-shrink-0">
-                          {product.category}
-                        </Badge>
-                      </div>
-                      <p className="text-xs text-gray-600 line-clamp-2">{product.description}</p>
-                      <p className="text-xs text-amber-600 font-medium">{product.brand}</p>
-                    </div>
-                  </CardContent>
+<CardContent className="p-4">
+  <div className="space-y-2">
+    {/* Badge above the title */}
+    <Badge variant="outline" className="text-xs flex-shrink-0">
+      {product.category}
+    </Badge>
+    
+    <h3 className="font-medium text-gray-900 text-sm leading-tight">
+      {product.title}
+    </h3>
+    
+    <p className="text-xs text-gray-600 line-clamp-2">
+      {product.description}
+    </p>
+    
+    <p className="text-xs text-amber-600 font-medium">
+      {product.brand}
+    </p>
+  </div>
+</CardContent>
+
                 </Card>
               ))}
             </div>
             
             <div className="mt-4 text-center">
               <p className="text-xs text-amber-700 italic">
-                This is a prototype - custom product inputs are disabled
+                Tai yra prototipas – individualių produktų įvedimas išjungtas
               </p>
             </div>
           </CardContent>

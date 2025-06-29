@@ -66,7 +66,7 @@ export const ImageUpload = ({ images, onImagesChange, disabled = false }: ImageU
         <CardContent className="flex flex-col items-center justify-center p-8 text-center">
           <Upload className="w-8 h-8 text-gray-400 mb-4" />
           <p className="text-gray-600 mb-2">
-            {disabled ? 'Image upload disabled in demo mode' : 'Drag and drop images here, or click to select'}
+            {disabled ? "Nuotraukų įkėlimas išjungtas demonstraciniu režimu" : "Tempkite ir numeskite nuotraukas čia arba spustelėkite, kad pasirinktumėte"}
           </p>
           <Button
             variant="outline"
@@ -74,7 +74,7 @@ export const ImageUpload = ({ images, onImagesChange, disabled = false }: ImageU
             onClick={() => !disabled && document.getElementById('file-input')?.click()}
           >
             <Image className="w-4 h-4 mr-2" />
-            Choose Images
+            Pasirinkite nuotraukas
           </Button>
           <input
             id="file-input"
