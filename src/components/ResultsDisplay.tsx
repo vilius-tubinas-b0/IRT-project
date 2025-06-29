@@ -105,9 +105,9 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
   const richContent = getRichContent();
 
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
+    <div className="max-w-7xl mx-auto space-y-8">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between py-4">
         <Button 
           variant="outline" 
           onClick={onBack}
@@ -137,87 +137,91 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
       </div>
 
       {/* Main Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Product Description - Left Column */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-8">
           {/* Product Title & Info */}
-          <Card className="backdrop-blur-sm bg-white/80 shadow-lg border-0">
-            <CardHeader>
-              <div className="flex items-start justify-between">
-                <div>
-                  <CardTitle className="text-3xl text-gray-900 mb-3">
-                    {content.title}
-                  </CardTitle>
-                  <div className="flex space-x-2">
-                    <Badge variant="secondary" className="capitalize">
-                      {content.tone} tone
+          <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
+            <CardHeader className="pb-6">
+              <div className="space-y-4">
+                <h1 className="text-4xl font-bold text-gray-900 leading-tight">
+                  {content.title}
+                </h1>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="secondary" className="capitalize text-sm px-3 py-1">
+                    {content.tone} tone
+                  </Badge>
+                  {content.brand && (
+                    <Badge variant="outline" className="text-sm px-3 py-1">
+                      {content.brand}
                     </Badge>
-                    {content.brand && (
-                      <Badge variant="outline">
-                        {content.brand}
-                      </Badge>
-                    )}
-                  </div>
+                  )}
                 </div>
+                {content.shortDescription && (
+                  <p className="text-lg text-gray-700 leading-relaxed mt-4">
+                    {content.shortDescription}
+                  </p>
+                )}
               </div>
             </CardHeader>
-            {content.shortDescription && (
-              <CardContent>
-                <p className="text-gray-600 text-m leading-relaxed">
-                  {content.shortDescription}
-                </p>
-              </CardContent>
-            )}
           </Card>
 
           {/* Long Description */}
-          <Card className="backdrop-blur-sm bg-white/80 shadow-lg border-0">
-            <CardHeader>
-              <CardTitle className="flex items-center justify-between">
-                <span>Product Description</span>
+          <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
+            <CardHeader className="pb-4">
+              <div className="flex items-center justify-between">
+                <h2 className="text-2xl font-semibold text-gray-900">Product Description</h2>
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => copyToClipboard(content.longDescription)}
+                  className="text-gray-500 hover:text-gray-700"
                 >
                   <Copy className="w-4 h-4" />
                 </Button>
-              </CardTitle>
+              </div>
             </CardHeader>
-            <CardContent>
-              <div className="prose prose-sm sm:prose lg:prose-lg prose-gray max-w-none text-gray-600">
+            <CardContent className="pt-0">
+              <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
                 <ReactMarkdown
                   children={content.longDescription}
                   remarkPlugins={[remarkGfm]}
                   rehypePlugins={[rehypeRaw]}
+                  components={{
+                    h1: ({node, ...props}) => <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3" {...props} />,
+                    h2: ({node, ...props}) => <h4 className="text-lg font-medium text-gray-900 mt-4 mb-2" {...props} />,
+                    h3: ({node, ...props}) => <h5 className="text-base font-medium text-gray-900 mt-3 mb-2" {...props} />,
+                    p: ({node, ...props}) => <p className="mb-4 text-gray-700" {...props} />,
+                    strong: ({node, ...props}) => <strong className="font-semibold text-gray-900" {...props} />,
+                  }}
                 />
               </div>
             </CardContent>
           </Card>
         </div>
 
-        {/* Image Gallery - Right Column */}
-        <div className="space-y-6">
-          <Card className="backdrop-blur-sm bg-white/80 shadow-lg border-0">
-            <CardHeader>
-              <CardTitle>Product Images</CardTitle>
+        {/* Image Gallery & Features - Right Column */}
+        <div className="space-y-8">
+          <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
+            <CardHeader className="pb-4">
+              <h3 className="text-xl font-semibold text-gray-900">Product Images</h3>
             </CardHeader>
-            <CardContent>
+            <CardContent className="pt-0">
               <ImageGallery images={richContent.images} title={content.title} />
             </CardContent>
           </Card>
 
           {/* Key Features */}
-          <Card className="backdrop-blur-sm bg-white/80 shadow-lg border-0">
-            <CardHeader>
-              <CardTitle className="text-lg">Key Features</CardTitle>
+          <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
+            <CardHeader className="pb-4">
+              <h3 className="text-xl font-semibold text-gray-900">Key Features</h3>
             </CardHeader>
-            <CardContent>
-              <ul className="space-y-3">
+            <CardContent className="pt-0">
+              <ul className="space-y-4">
                 {content.features.map((feature: string, index: number) => (
                   <li key={index} className="flex items-start space-x-3">
-                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-700 text-sm leading-relaxed">{feature}</span>
+                    <div className="w-2 h-2 rounded-full bg-blue-600 mt-2.5 flex-shrink-0"></div>
+                    <span className="text-gray-800 leading-relaxed">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -227,23 +231,23 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
       </div>
 
       {/* Tabbed Content */}
-      <Card className="backdrop-blur-sm bg-white/80 shadow-lg border-0">
-        <CardContent className="p-6">
+      <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
+        <CardContent className="p-8">
           <Tabs defaultValue="marketing" className="w-full">
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="marketing">Marketing Materials</TabsTrigger>
-              <TabsTrigger value="sources">Research Sources</TabsTrigger>
-              <TabsTrigger value="analytics">Market Analytics</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-3 mb-8">
+              <TabsTrigger value="marketing" className="text-base">Marketing Materials</TabsTrigger>
+              <TabsTrigger value="sources" className="text-base">Research Sources</TabsTrigger>
+              <TabsTrigger value="analytics" className="text-base">Market Analytics</TabsTrigger>
             </TabsList>
             
-            <TabsContent value="marketing" className="mt-6">
+            <TabsContent value="marketing" className="mt-0">
               <MarketingMaterials 
                 materials={richContent.marketingMaterials} 
                 productTitle={content.title}
               />
             </TabsContent>
             
-            <TabsContent value="sources" className="mt-6">
+            <TabsContent value="sources" className="mt-0">
               <Sources 
                 manufacturer={richContent.sources.manufacturer}
                 competitors={richContent.sources.competitors}
@@ -251,19 +255,19 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
               />
             </TabsContent>
             
-            <TabsContent value="analytics" className="mt-6">
+            <TabsContent value="analytics" className="mt-0">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <Card className="text-center p-6">
-                  <h3 className="text-2xl font-bold text-blue-600">245K</h3>
-                  <p className="text-gray-600">Monthly Searches</p>
+                <Card className="text-center p-8 bg-blue-50 border-blue-200">
+                  <h3 className="text-3xl font-bold text-blue-700 mb-2">245K</h3>
+                  <p className="text-gray-700 font-medium">Monthly Searches</p>
                 </Card>
-                <Card className="text-center p-6">
-                  <h3 className="text-2xl font-bold text-green-600">$150-$400</h3>
-                  <p className="text-gray-600">Price Range</p>
+                <Card className="text-center p-8 bg-green-50 border-green-200">
+                  <h3 className="text-3xl font-bold text-green-700 mb-2">$150-$400</h3>
+                  <p className="text-gray-700 font-medium">Price Range</p>
                 </Card>
-                <Card className="text-center p-6">
-                  <h3 className="text-2xl font-bold text-purple-600">85%</h3>
-                  <p className="text-gray-600">Customer Satisfaction</p>
+                <Card className="text-center p-8 bg-purple-50 border-purple-200">
+                  <h3 className="text-3xl font-bold text-purple-700 mb-2">85%</h3>
+                  <p className="text-gray-700 font-medium">Customer Satisfaction</p>
                 </Card>
               </div>
             </TabsContent>
