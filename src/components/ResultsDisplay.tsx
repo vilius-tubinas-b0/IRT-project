@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -187,7 +188,7 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
                         h1: ({node, ...props}) => <h3 className="text-lg font-semibold text-gray-900 mt-4 mb-2" {...props} />,
                         h2: ({node, ...props}) => <h4 className="text-base font-medium text-gray-900 mt-3 mb-2" {...props} />,
                         h3: ({node, ...props}) => <h5 className="text-sm font-medium text-gray-900 mt-2 mb-1" {...props} />,
-                        p: ({node, ...props}) => <p className="mb-3 text-sm text-gray-700 leading-relaxed" {...props} />,
+                        p: ({node, ...props}) => <p className="mb-2 text-sm text-gray-700 leading-normal" {...props} />,
                         strong: ({node, ...props}) => <strong className="font-semibold text-gray-900" {...props} />,
                       }}
                     />
@@ -199,7 +200,7 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
         </div>
 
         {/* Image Gallery & Features - Right Column */}
-        <div className="space-y-6">
+        <div className="space-y-4">
           <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
             <CardContent className="p-6">
               <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">Product Images</h3>
@@ -211,7 +212,7 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
           <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
             <CardContent className="p-6">
               <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">Key Features</h3>
-              <ul className="space-y-3">
+              <ul className="space-y-2 mb-6">
                 {content.features.map((feature: string, index: number) => (
                   <li key={index} className="flex items-start space-x-3">
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-2 flex-shrink-0"></div>
@@ -219,53 +220,56 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
                   </li>
                 ))}
               </ul>
+
+              {/* Marketing Copy Card */}
+              <div className="space-y-3">
+                <Card className="bg-blue-50 border-blue-200">
+                  <CardContent className="p-4">
+                    <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Marketing Copy</h4>
+                    <div className="space-y-2">
+                      <MarketingMaterials 
+                        materials={richContent.marketingMaterials.filter(m => !m.imageUrl && !m.videoUrl).slice(0, 2)} 
+                        productTitle={content.title}
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Market Analytics Card */}
+                <Card className="bg-purple-50 border-purple-200">
+                  <CardContent className="p-4">
+                    <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Market Analytics</h4>
+                    <div className="grid grid-cols-1 gap-3">
+                      <div className="text-center p-3 bg-white rounded-md">
+                        <p className="text-lg font-bold text-blue-700">245K</p>
+                        <p className="text-xs text-gray-600">Monthly Searches</p>
+                      </div>
+                      <div className="text-center p-3 bg-white rounded-md">
+                        <p className="text-lg font-bold text-green-700">$150-$400</p>
+                        <p className="text-xs text-gray-600">Price Range</p>
+                      </div>
+                      <div className="text-center p-3 bg-white rounded-md">
+                        <p className="text-lg font-bold text-purple-700">85%</p>
+                        <p className="text-xs text-gray-600">Customer Satisfaction</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             </CardContent>
           </Card>
         </div>
       </div>
 
-      {/* Tabbed Content */}
+      {/* Research Sources Only */}
       <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
         <CardContent className="p-8">
-          <Tabs defaultValue="marketing" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 mb-8">
-              <TabsTrigger value="marketing" className="text-base">Marketing Materials</TabsTrigger>
-              <TabsTrigger value="sources" className="text-base">Research Sources</TabsTrigger>
-              <TabsTrigger value="analytics" className="text-base">Market Analytics</TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="marketing" className="mt-0">
-              <MarketingMaterials 
-                materials={richContent.marketingMaterials} 
-                productTitle={content.title}
-              />
-            </TabsContent>
-            
-            <TabsContent value="sources" className="mt-0">
-              <Sources 
-                manufacturer={richContent.sources.manufacturer}
-                competitors={richContent.sources.competitors}
-                marketInsights={richContent.sources.marketInsights}
-              />
-            </TabsContent>
-            
-            <TabsContent value="analytics" className="mt-0">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <Card className="text-center p-8 bg-blue-50 border-blue-200">
-                  <h3 className="text-3xl font-bold text-blue-700 mb-2">245K</h3>
-                  <p className="text-gray-700 font-medium">Monthly Searches</p>
-                </Card>
-                <Card className="text-center p-8 bg-green-50 border-green-200">
-                  <h3 className="text-3xl font-bold text-green-700 mb-2">$150-$400</h3>
-                  <p className="text-gray-700 font-medium">Price Range</p>
-                </Card>
-                <Card className="text-center p-8 bg-purple-50 border-purple-200">
-                  <h3 className="text-3xl font-bold text-purple-700 mb-2">85%</h3>
-                  <p className="text-gray-700 font-medium">Customer Satisfaction</p>
-                </Card>
-              </div>
-            </TabsContent>
-          </Tabs>
+          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-6">Research Sources</h3>
+          <Sources 
+            manufacturer={richContent.sources.manufacturer}
+            competitors={richContent.sources.competitors}
+            marketInsights={richContent.sources.marketInsights}
+          />
         </CardContent>
       </Card>
     </div>
