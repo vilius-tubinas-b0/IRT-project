@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -105,7 +104,7 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
   const richContent = getRichContent();
 
   return (
-    <div className="max-w-7xl mx-auto space-y-8">
+    <div className="max-w-7xl mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between py-4">
         <Button 
@@ -137,91 +136,86 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
       </div>
 
       {/* Main Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Product Description - Left Column */}
-        <div className="lg:col-span-2 space-y-8">
-          {/* Product Title & Info */}
+        <div className="lg:col-span-2 space-y-6">
+          {/* Combined Product Title & Description */}
           <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
-            <CardHeader className="pb-6">
-              <div className="space-y-4">
-                <h1 className="text-4xl font-bold text-gray-900 leading-tight">
-                  {content.title}
-                </h1>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary" className="capitalize text-sm px-3 py-1">
-                    {content.tone} tone
-                  </Badge>
-                  {content.brand && (
-                    <Badge variant="outline" className="text-sm px-3 py-1">
-                      {content.brand}
+            <CardContent className="p-8">
+              <div className="space-y-6">
+                <div className="space-y-4">
+                  <h1 className="text-4xl font-bold text-gray-900 leading-tight">
+                    {content.title}
+                  </h1>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="secondary" className="capitalize text-sm px-3 py-1">
+                      {content.tone} tone
                     </Badge>
+                    {content.brand && (
+                      <Badge variant="outline" className="text-sm px-3 py-1">
+                        {content.brand}
+                      </Badge>
+                    )}
+                  </div>
+                  {content.shortDescription && (
+                    <p className="text-lg text-gray-700 leading-relaxed">
+                      {content.shortDescription}
+                    </p>
                   )}
                 </div>
-                {content.shortDescription && (
-                  <p className="text-lg text-gray-700 leading-relaxed mt-4">
-                    {content.shortDescription}
-                  </p>
-                )}
-              </div>
-            </CardHeader>
-          </Card>
 
-          {/* Long Description */}
-          <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
-            <CardHeader className="pb-4">
-              <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-semibold text-gray-900">Product Description</h2>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => copyToClipboard(content.longDescription)}
-                  className="text-gray-500 hover:text-gray-700"
-                >
-                  <Copy className="w-4 h-4" />
-                </Button>
-              </div>
-            </CardHeader>
-            <CardContent className="pt-0">
-              <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-                <ReactMarkdown
-                  children={content.longDescription}
-                  remarkPlugins={[remarkGfm]}
-                  rehypePlugins={[rehypeRaw]}
-                  components={{
-                    h1: ({node, ...props}) => <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3" {...props} />,
-                    h2: ({node, ...props}) => <h4 className="text-lg font-medium text-gray-900 mt-4 mb-2" {...props} />,
-                    h3: ({node, ...props}) => <h5 className="text-base font-medium text-gray-900 mt-3 mb-2" {...props} />,
-                    p: ({node, ...props}) => <p className="mb-4 text-gray-700" {...props} />,
-                    strong: ({node, ...props}) => <strong className="font-semibold text-gray-900" {...props} />,
-                  }}
-                />
+                <Separator className="my-6" />
+
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Product Description</h2>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => copyToClipboard(content.longDescription)}
+                      className="text-gray-400 hover:text-gray-600"
+                    >
+                      <Copy className="w-4 h-4" />
+                    </Button>
+                  </div>
+                  <div className="prose prose-sm max-w-none text-gray-700 leading-relaxed">
+                    <ReactMarkdown
+                      children={content.longDescription}
+                      remarkPlugins={[remarkGfm]}
+                      rehypePlugins={[rehypeRaw]}
+                      components={{
+                        h1: ({node, ...props}) => <h3 className="text-lg font-semibold text-gray-900 mt-4 mb-2" {...props} />,
+                        h2: ({node, ...props}) => <h4 className="text-base font-medium text-gray-900 mt-3 mb-2" {...props} />,
+                        h3: ({node, ...props}) => <h5 className="text-sm font-medium text-gray-900 mt-2 mb-1" {...props} />,
+                        p: ({node, ...props}) => <p className="mb-3 text-sm text-gray-700 leading-relaxed" {...props} />,
+                        strong: ({node, ...props}) => <strong className="font-semibold text-gray-900" {...props} />,
+                      }}
+                    />
+                  </div>
+                </div>
               </div>
             </CardContent>
           </Card>
         </div>
 
         {/* Image Gallery & Features - Right Column */}
-        <div className="space-y-8">
+        <div className="space-y-6">
           <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
-            <CardHeader className="pb-4">
-              <h3 className="text-xl font-semibold text-gray-900">Product Images</h3>
-            </CardHeader>
-            <CardContent className="pt-0">
+            <CardContent className="p-6">
+              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">Product Images</h3>
               <ImageGallery images={richContent.images} title={content.title} />
             </CardContent>
           </Card>
 
           {/* Key Features */}
           <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
-            <CardHeader className="pb-4">
-              <h3 className="text-xl font-semibold text-gray-900">Key Features</h3>
-            </CardHeader>
-            <CardContent className="pt-0">
-              <ul className="space-y-4">
+            <CardContent className="p-6">
+              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">Key Features</h3>
+              <ul className="space-y-3">
                 {content.features.map((feature: string, index: number) => (
                   <li key={index} className="flex items-start space-x-3">
-                    <div className="w-2 h-2 rounded-full bg-blue-600 mt-2.5 flex-shrink-0"></div>
-                    <span className="text-gray-800 leading-relaxed">{feature}</span>
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-2 flex-shrink-0"></div>
+                    <span className="text-sm text-gray-700 leading-relaxed">{feature}</span>
                   </li>
                 ))}
               </ul>
