@@ -32,7 +32,7 @@ const Index = () => {
   };
 
   const handleGenerate = (data: any) => {
-    console.log('Generating content for:', data);
+    console.log('Generuojamas turinys:', data);
     setIsLoading(true);
   };
 
@@ -55,14 +55,14 @@ const Index = () => {
       return {
         title: formData.title,
         shortDescription: formData.description,
-        longDescription: `Discover the exceptional **${formData.title}**, a premium product that combines innovative design with outstanding functionality.`,
+        longDescription: `Atraskite išskirtinį **${formData.title}**, aukščiausios kokybės produktą, kuris sujungia novatorišką dizainą su puikiu funkcionalumu.`,
         features: [
-          'Premium materials',
-          'Modern engineering',
-          'User-friendly interface',
-          'Durable construction',
-          'Versatile use',
-          'Professional-grade performance'
+          'Aukščiausios kokybės medžiagos',
+          'Šiuolaikiškas inžinerinis sprendimas',
+          'Patogus naudoti sąsaja',
+          'Tvirta konstrukcija',
+          'Universalus naudojimas',
+          'Profesionalaus lygio našumas'
         ],
         tone: formData.tone,
         brand: formData.brand,
@@ -105,42 +105,42 @@ const Index = () => {
             {/* LEFT: Sticky Info */}
             <div className="lg:sticky lg:top-20 self-start space-y-8">
               <h1 className="text-5xl font-bold text-gray-900 leading-tight">
-                AI Product Description
+                Dirbtinio intelekto produkto aprašymo
                 <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                  Generator
+                  Generatorius
                 </span>
               </h1>
 
               <p className="text-lg text-gray-600 leading-relaxed">
-                Transform your products into compelling stories with AI-powered research, competitive analysis, and optimized marketing content.
+                Paversk savo produktus įtraukiančiomis istorijomis su dirbtinio intelekto tyrimais, konkurentų analize ir optimizuotu reklamos turiniu.
               </p>
 
               <div className="flex flex-wrap gap-4 text-sm text-gray-500">
                 <span className="flex items-center">
                   <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                  Competitor Analysis
+                  Konkurentų analizė
                 </span>
                 <span className="flex items-center">
                   <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
-                  SEO Optimized
+                  SEO optimizuotas
                 </span>
                 <span className="flex items-center">
                   <div className="w-2 h-2 bg-purple-500 rounded-full mr-2"></div>
-                  Marketing Materials
+                  Reklamos medžiagos
                 </span>
               </div>
 
               {/* HOW IT WORKS */}
               <div className="pt-8 space-y-4">
-                <h3 className="text-md font-semibold text-gray-700">How it works</h3>
+                <h3 className="text-md font-semibold text-gray-700">Kaip tai veikia</h3>
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3">
                     <div className="w-8 h-8 bg-blue-100 text-blue-600 rounded-md flex items-center justify-center">
                       <span className="text-lg font-bold">1</span>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-800">Enter product info</p>
-                      <p className="text-sm text-gray-500">Fill in a title, description, and upload optional images.</p>
+                      <p className="text-sm font-medium text-gray-800">Įvesk produkto informaciją</p>
+                      <p className="text-sm text-gray-500">Užpildyk pavadinimą, aprašymą ir įkelk papildomas nuotraukas.</p>
                     </div>
                   </div>
 
@@ -149,8 +149,8 @@ const Index = () => {
                       <span className="text-lg font-bold">2</span>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-800">Click "Generate"</p>
-                      <p className="text-sm text-gray-500">Our AI collects insights and builds optimized content.</p>
+                      <p className="text-sm font-medium text-gray-800">Spausk "Generuoti"</p>
+                      <p className="text-sm text-gray-500">Mūsų dirbtinis intelektas renka įžvalgas ir sukuria optimizuotą turinį.</p>
                     </div>
                   </div>
 
@@ -159,8 +159,8 @@ const Index = () => {
                       <span className="text-lg font-bold">3</span>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-800">Get marketing assets</p>
-                      <p className="text-sm text-gray-500">Copy-ready texts, images, ads and more — all in one place.</p>
+                      <p className="text-sm font-medium text-gray-800">Gauk reklamos medžiagas</p>
+                      <p className="text-sm text-gray-500">Paruošti tekstai, nuotraukos, reklamos ir daugiau — viskas vienoje vietoje.</p>
                     </div>
                   </div>
                 </div>

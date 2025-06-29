@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -26,31 +25,30 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
     toast({
-      title: "Copied!",
-      description: "Content copied to clipboard",
+      title: "Nukopijuota!",
+      description: "Turinys nukopijuotas į iškarpinę",
     });
   };
 
   const downloadContent = () => {
-    const contentText = `Product Title: ${content.title}\n\nShort Description:\n${content.shortDescription}\n\nLong Description:\n${content.longDescription}\n\nKey Features:\n${content.features.map((f: string) => `• ${f}`).join('\n')}`;
+    const contentText = `Produkto pavadinimas: ${content.title}\n\nTrumpas aprašymas:\n${content.shortDescription}\n\nIlgas aprašymas:\n${content.longDescription}\n\nPagrindinės savybės:\n${content.features.map((f: string) => `• ${f}`).join('\n')}`;
     
     const blob = new Blob([contentText], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${content.title.replace(/[^a-zA-Z0-9]/g, '_')}_description.txt`;
+    a.download = `${content.title.replace(/[^a-zA-Z0-9]/g, '_')}_aprasymas.txt`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
     
     toast({
-      title: "Downloaded!",
-      description: "Content saved to your device",
+      title: "Atsisiųsta!",
+      description: "Turinys išsaugotas jūsų įrenginyje",
     });
   };
 
-  // Get rich content from centralized data
   const getRichContent = () => {
     const selectedProduct = getProductById(content.selectedDemo);
     
@@ -61,9 +59,9 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
         manufacturer: {
           name: selectedProduct ? `${selectedProduct.brand} Industries` : 'AudioTech Pro Industries',
           website: 'https://example.com',
-          description: `Leading manufacturer of premium ${selectedProduct?.category.toLowerCase() || 'consumer'} products with over 15 years of experience in creating professional-grade consumer electronics.`,
+          description: `Pirmaujantis aukščiausios kokybės ${selectedProduct?.category.toLowerCase() || 'vartotojų'} produktų gamintojas, turintis daugiau nei 15 metų patirties kuriant profesionalaus lygio vartotojų elektroniką.`,
           founded: '2008',
-          headquarters: 'San Francisco, CA'
+          headquarters: 'San Franciskas, CA'
         },
         competitors: [
           {
@@ -71,8 +69,8 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
             url: 'https://sony.com',
             socialPost: {
               platform: 'Instagram',
-              content: 'Immerse yourself in crystal-clear audio with our latest wireless technology',
-              engagement: '12.5K views',
+              content: 'Pasinerkite į kristalinio skaidrumo garsą su mūsų naujausią belaide technologija',
+              engagement: '12.5K peržiūrų',
               likes: '2.1K',
               url: 'https://instagram.com/sony/post/123',
               imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400'
@@ -83,8 +81,8 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
             url: 'https://bose.com',
             socialPost: {
               platform: 'Twitter',
-              content: 'Silence the world, amplify your music. Our noise-cancelling technology sets the standard.',
-              engagement: '8.2K views',
+              content: 'Nutildyk pasaulį, stiprink savo muziką. Mūsų triukšmo slopinimo technologija nustato standartą.',
+              engagement: '8.2K peržiūrų',
               likes: '1.8K',
               url: 'https://twitter.com/bose/status/123',
               imageUrl: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400'
@@ -94,7 +92,7 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
         marketInsights: {
           searchVolume: '245K',
           trending: true,
-          priceRange: '$150-$400'
+          priceRange: '150-400 €'
         }
       }
     };
@@ -114,7 +112,7 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
           className="flex items-center space-x-2"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Back to Form</span>
+          <span>Grįžti į formą</span>
         </Button>
         
         <div className="flex space-x-2">
@@ -124,14 +122,14 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
             className="flex items-center space-x-2"
           >
             <Copy className="w-4 h-4" />
-            <span>Copy Description</span>
+            <span>Kopijuoti aprašymą</span>
           </Button>
           <Button
             onClick={downloadContent}
             className="flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
           >
             <Download className="w-4 h-4" />
-            <span>Download All</span>
+            <span>Atsisiųsti viską</span>
           </Button>
         </div>
       </div>
@@ -145,12 +143,14 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
             <CardContent className="p-8">
               <div className="space-y-6">
                 <div className="space-y-4">
-                  <h1 className="text-4xl font-bold text-gray-900 leading-tight">
+                  <h1 className="text-3xl font-bold text-gray-900 leading-tight">
                     {content.title}
                   </h1>
                   <div className="flex flex-wrap gap-2">
                     <Badge variant="secondary" className="capitalize text-sm px-3 py-1">
-                      {content.tone} tone
+                      {content.tone === 'professional' ? 'profesionalus' : 
+                       content.tone === 'casual' ? 'laisvas' : 
+                       content.tone === 'friendly' ? 'draugiškas' : content.tone} tonas
                     </Badge>
                     {content.brand && (
                       <Badge variant="outline" className="text-sm px-3 py-1">
@@ -159,7 +159,7 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
                     )}
                   </div>
                   {content.shortDescription && (
-                    <p className="text-lg text-gray-700 leading-relaxed">
+                    <p className="text-base text-gray-700 leading-relaxed">
                       {content.shortDescription}
                     </p>
                   )}
@@ -169,7 +169,7 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
 
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Product Description</h2>
+                    <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wide">produkto aprašymas</h2>
                     <Button
                       variant="ghost"
                       size="sm"
@@ -185,10 +185,10 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
                       remarkPlugins={[remarkGfm]}
                       rehypePlugins={[rehypeRaw]}
                       components={{
-                        h1: ({node, ...props}) => <h3 className="text-lg font-semibold text-gray-900 mt-4 mb-2" {...props} />,
-                        h2: ({node, ...props}) => <h4 className="text-base font-medium text-gray-900 mt-3 mb-2" {...props} />,
+                        h1: ({node, ...props}) => <h3 className="text-lg font-semibold text-gray-900 mt-3 mb-2" {...props} />,
+                        h2: ({node, ...props}) => <h4 className="text-base font-medium text-gray-900 mt-2 mb-1" {...props} />,
                         h3: ({node, ...props}) => <h5 className="text-sm font-medium text-gray-900 mt-2 mb-1" {...props} />,
-                        p: ({node, ...props}) => <p className="mb-2 text-sm text-gray-700 leading-normal" {...props} />,
+                        p: ({node, ...props}) => <p className="mb-2 text-sm text-gray-700 leading-relaxed" {...props} />,
                         strong: ({node, ...props}) => <strong className="font-semibold text-gray-900" {...props} />,
                       }}
                     />
@@ -199,11 +199,12 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
           </Card>
         </div>
 
-        {/* Image Gallery & Features - Right Column */}
+        {/* Right Column - Multiple Cards */}
         <div className="space-y-4">
+          {/* Product Images */}
           <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
             <CardContent className="p-6">
-              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">Product Images</h3>
+              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">produkto nuotraukos</h3>
               <ImageGallery images={richContent.images} title={content.title} />
             </CardContent>
           </Card>
@@ -211,8 +212,8 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
           {/* Key Features */}
           <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
             <CardContent className="p-6">
-              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">Key Features</h3>
-              <ul className="space-y-2 mb-6">
+              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">pagrindinės savybės</h3>
+              <ul className="space-y-2">
                 {content.features.map((feature: string, index: number) => (
                   <li key={index} className="flex items-start space-x-3">
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-2 flex-shrink-0"></div>
@@ -220,41 +221,39 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
                   </li>
                 ))}
               </ul>
+            </CardContent>
+          </Card>
 
-              {/* Marketing Copy Card */}
-              <div className="space-y-3">
-                <Card className="bg-blue-50 border-blue-200">
-                  <CardContent className="p-4">
-                    <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Marketing Copy</h4>
-                    <div className="space-y-2">
-                      <MarketingMaterials 
-                        materials={richContent.marketingMaterials.filter(m => !m.imageUrl && !m.videoUrl).slice(0, 2)} 
-                        productTitle={content.title}
-                      />
-                    </div>
-                  </CardContent>
-                </Card>
+          {/* Marketing Copy */}
+          <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
+            <CardContent className="p-6">
+              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">reklamos tekstas</h3>
+              <div className="space-y-2">
+                <MarketingMaterials 
+                  materials={richContent.marketingMaterials.filter(m => !m.imageUrl && !m.videoUrl).slice(0, 2)} 
+                  productTitle={content.title}
+                />
+              </div>
+            </CardContent>
+          </Card>
 
-                {/* Market Analytics Card */}
-                <Card className="bg-purple-50 border-purple-200">
-                  <CardContent className="p-4">
-                    <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Market Analytics</h4>
-                    <div className="grid grid-cols-1 gap-3">
-                      <div className="text-center p-3 bg-white rounded-md">
-                        <p className="text-lg font-bold text-blue-700">245K</p>
-                        <p className="text-xs text-gray-600">Monthly Searches</p>
-                      </div>
-                      <div className="text-center p-3 bg-white rounded-md">
-                        <p className="text-lg font-bold text-green-700">$150-$400</p>
-                        <p className="text-xs text-gray-600">Price Range</p>
-                      </div>
-                      <div className="text-center p-3 bg-white rounded-md">
-                        <p className="text-lg font-bold text-purple-700">85%</p>
-                        <p className="text-xs text-gray-600">Customer Satisfaction</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+          {/* Market Analytics */}
+          <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
+            <CardContent className="p-6">
+              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">rinkos analitika</h3>
+              <div className="grid grid-cols-1 gap-3">
+                <div className="text-center p-3 bg-blue-50 rounded-md">
+                  <p className="text-lg font-bold text-blue-700">245K</p>
+                  <p className="text-xs text-gray-600">Mėnesinių paieškų</p>
+                </div>
+                <div className="text-center p-3 bg-green-50 rounded-md">
+                  <p className="text-lg font-bold text-green-700">150-400 €</p>
+                  <p className="text-xs text-gray-600">Kainų intervalas</p>
+                </div>
+                <div className="text-center p-3 bg-purple-50 rounded-md">
+                  <p className="text-lg font-bold text-purple-700">85%</p>
+                  <p className="text-xs text-gray-600">Klientų pasitenkinimas</p>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -264,7 +263,7 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
       {/* Research Sources Only */}
       <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
         <CardContent className="p-8">
-          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-6">Research Sources</h3>
+          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-6">tyrimų šaltiniai</h3>
           <Sources 
             manufacturer={richContent.sources.manufacturer}
             competitors={richContent.sources.competitors}

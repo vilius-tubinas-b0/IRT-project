@@ -28,8 +28,8 @@ export const MarketingMaterials = ({ materials, productTitle }: MarketingMateria
   const copyToClipboard = (text: string, type: string) => {
     navigator.clipboard.writeText(text);
     toast({
-      title: "Copied!",
-      description: `${type} copied to clipboard`,
+      title: "Nukopijuota!",
+      description: `${type} nukopijuotas į iškarpinę`,
     });
   };
 
@@ -42,16 +42,16 @@ export const MarketingMaterials = ({ materials, productTitle }: MarketingMateria
     document.body.removeChild(link);
     
     toast({
-      title: "Downloaded!",
-      description: "Asset saved to your device",
+      title: "Atsisiųsta!",
+      description: "Failas išsaugotas jūsų įrenginyje",
     });
   };
 
   const categories = [
-    { id: 'all', name: 'All Materials', icon: null },
-    { id: 'copy', name: 'Marketing Copy', icon: Mail },
-    { id: 'social', name: 'Social Media', icon: MessageSquare },
-    { id: 'visuals', name: 'Visual Assets', icon: Image }
+    { id: 'all', name: 'Visos medžiagos', icon: null },
+    { id: 'copy', name: 'Reklamos tekstas', icon: Mail },
+    { id: 'social', name: 'Socialiniai tinklai', icon: MessageSquare },
+    { id: 'visuals', name: 'Vizualinės medžiagos', icon: Image }
   ];
 
   const getCategoryMaterials = (category: string) => {
@@ -74,13 +74,10 @@ export const MarketingMaterials = ({ materials, productTitle }: MarketingMateria
 
   return (
     <div className="space-y-6">
-      {/* Category Tabs */}
-     
-
       {/* Marketing Copy with Chips */}
       {copyMaterials.length > 0 && (
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900">Marketing Copy</h3>
+          <h3 className="text-lg font-semibold text-gray-900">Reklamos tekstas</h3>
           <div className="space-y-6">
             {copyMaterials.map((material, index) => (
               <Card key={index} className="border-l-4 border-l-blue-500">
@@ -97,7 +94,7 @@ export const MarketingMaterials = ({ materials, productTitle }: MarketingMateria
                 <CardContent>
                   {material.items ? (
                     <div className="space-y-3">
-                      <p className="text-sm text-gray-600 mb-3">Click any option to copy:</p>
+                      <p className="text-sm text-gray-600 mb-3">Spausk bet kurią parinktį, kad nukopijuotum:</p>
                       <div className="flex flex-wrap gap-2">
                         {material.items.map((item, itemIndex) => (
                           <Button
@@ -127,7 +124,7 @@ export const MarketingMaterials = ({ materials, productTitle }: MarketingMateria
                         className="flex items-center space-x-2"
                       >
                         <Copy className="w-4 h-4" />
-                        <span>Copy</span>
+                        <span>Kopijuoti</span>
                       </Button>
                     </div>
                   )}
@@ -141,7 +138,7 @@ export const MarketingMaterials = ({ materials, productTitle }: MarketingMateria
       {/* Visual Marketing Assets Grid */}
       {visualMaterials.length > 0 && (
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900">Visual Marketing Assets</h3>
+          <h3 className="text-lg font-semibold text-gray-900">Vizualinės reklamos medžiagos</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {visualMaterials.map((material, index) => (
               <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
@@ -163,7 +160,7 @@ export const MarketingMaterials = ({ materials, productTitle }: MarketingMateria
                   ) : (
                     <img
                       src={material.imageUrl}
-                      alt={`${material.type} for ${productTitle}`}
+                      alt={`${material.type} skirtas ${productTitle}`}
                       className="w-full aspect-square object-cover"
                     />
                   )}
@@ -183,33 +180,31 @@ export const MarketingMaterials = ({ materials, productTitle }: MarketingMateria
                     </div>
                   </div>
                 </div>
-<CardContent className="p-4 space-y-3">
-  {material.content && (
-    <p className="text-base font-medium text-gray-900 leading-snug">
-      {material.content}
-    </p>
-  )}
+                <CardContent className="p-4 space-y-3">
+                  {material.content && (
+                    <p className="text-base font-medium text-gray-900 leading-snug">
+                      {material.content}
+                    </p>
+                  )}
 
-  <div className="flex flex-wrap gap-2">
-    {material.platform && (
-      <Badge variant="secondary" className="text-xs capitalize">
-        {material.platform}
-      </Badge>
-    )}
-    {material.type && (
-      <Badge variant="outline" className="text-xs lowercase">
-        {material.type}
-      </Badge>
-    )}
-    {material.size && (
-      <Badge variant="outline" className="text-xs">
-        {material.size}
-      </Badge>
-    )}
-  </div>
-</CardContent>
-
-
+                  <div className="flex flex-wrap gap-2">
+                    {material.platform && (
+                      <Badge variant="secondary" className="text-xs capitalize">
+                        {material.platform}
+                      </Badge>
+                    )}
+                    {material.type && (
+                      <Badge variant="outline" className="text-xs lowercase">
+                        {material.type}
+                      </Badge>
+                    )}
+                    {material.size && (
+                      <Badge variant="outline" className="text-xs">
+                        {material.size}
+                      </Badge>
+                    )}
+                  </div>
+                </CardContent>
               </Card>
             ))}
           </div>
@@ -218,7 +213,7 @@ export const MarketingMaterials = ({ materials, productTitle }: MarketingMateria
 
       {getCategoryMaterials(selectedCategory).length === 0 && (
         <div className="text-center py-8">
-          <p className="text-gray-500">No materials found for this category.</p>
+          <p className="text-gray-500">Šiai kategorijai medžiagų nerasta.</p>
         </div>
       )}
     </div>
