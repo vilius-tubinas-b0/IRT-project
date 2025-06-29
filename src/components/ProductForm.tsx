@@ -51,21 +51,41 @@ export const ProductForm = ({ onGenerate, selectedDemo, formData, onFormDataChan
 
   return (
     <Card className="max-w-4xl mx-auto backdrop-blur-sm bg-white/80 shadow-xl border-0">
+
+      
       <CardHeader className="text-center pb-6">
-        <CardTitle className="text-2xl font-semibold text-gray-800">
-          Product Information
-        </CardTitle>
-        <p className="text-gray-600">
-          Enter your product details below
-        </p>
-        {selectedDemo && (
-          <div className="inline-flex items-center px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm">
+                {selectedDemo && (
+          <div className="inline-flex items-center px-3 py-3 rounded-sm bg-green-100 text-green-700 text-sm">
             Demo product selected: {formData.title}
           </div>
         )}
+        <CardTitle className="text-2xl font-semibold text-gray-800">
+          Product Information
+        </CardTitle>
+        <p className="text-gray-600 mb-4">
+          Enter your product details below
+        </p>
+
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-8">
+
+                    {/* Product Title - Required */}
+          <div className="space-y-2">
+            <Label htmlFor="title" className="text-sm font-medium">
+              Product Title <span className="text-red-500">*</span>
+            </Label>
+            <Input
+              id="title"
+              value={formData.title}
+              onChange={(e) => updateFormData('title', e.target.value)}
+              placeholder="Enter your product title"
+              className="transition-all duration-200 focus:ring-2 focus:ring-blue-500"
+              required
+              disabled={!selectedDemo}
+            />
+          </div>
+
           {/* Product URL */}
           <div className="space-y-2">
             <Label htmlFor="productUrl" className="text-sm font-medium">
@@ -123,21 +143,7 @@ export const ProductForm = ({ onGenerate, selectedDemo, formData, onFormDataChan
             </div>
           </div>
 
-          {/* Product Title - Required */}
-          <div className="space-y-2">
-            <Label htmlFor="title" className="text-sm font-medium">
-              Product Title <span className="text-red-500">*</span>
-            </Label>
-            <Input
-              id="title"
-              value={formData.title}
-              onChange={(e) => updateFormData('title', e.target.value)}
-              placeholder="Enter your product title"
-              className="transition-all duration-200 focus:ring-2 focus:ring-blue-500"
-              required
-              disabled={!selectedDemo}
-            />
-          </div>
+
 
           {/* Product Description */}
           <div className="space-y-2">

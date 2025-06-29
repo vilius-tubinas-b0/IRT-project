@@ -118,7 +118,8 @@ export const Sources = ({ manufacturer, competitors, marketInsights }: SourcesPr
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
             {competitors.map((competitor, index) => (
               <Card key={index} className="overflow-hidden hover:shadow-md transition-shadow">
                 {competitor.socialPost?.imageUrl && (
@@ -126,7 +127,7 @@ export const Sources = ({ manufacturer, competitors, marketInsights }: SourcesPr
                     <img
                       src={competitor.socialPost.imageUrl}
                       alt={`${competitor.name} social media post`}
-                      className="w-full h-48 object-cover"
+                      className="w-full aspect-square object-cover"
                     />
                     <div className="absolute top-2 right-2">
                       <Badge variant="secondary" className="bg-white/90">
@@ -152,24 +153,18 @@ export const Sources = ({ manufacturer, competitors, marketInsights }: SourcesPr
                         "{competitor.socialPost.content}"
                       </p>
                       
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-4 text-sm text-gray-500">
-                          <div className="flex items-center space-x-1">
-                            <Heart className="w-4 h-4" />
-                            <span>{competitor.socialPost.likes}</span>
-                          </div>
-                          <div className="flex items-center space-x-1">
-                            <Eye className="w-4 h-4" />
-                            <span>{competitor.socialPost.engagement}</span>
-                          </div>
-                        </div>
-                        
-                        <Button variant="ghost" size="sm" asChild>
-                          <a href={competitor.socialPost.url} target="_blank" rel="noopener noreferrer">
-                            View Post <ExternalLink className="w-3 h-3 ml-1" />
-                          </a>
-                        </Button>
-                      </div>
+<div className="flex items-center space-x-4 text-sm text-gray-500">
+  <div className="flex items-center space-x-1">
+    <Heart className="w-4 h-4" />
+    <span>{competitor.socialPost.likes}</span>
+  </div>
+  <div className="flex items-center space-x-1">
+    <Eye className="w-4 h-4" />
+    <span>{competitor.socialPost.engagement}</span>
+  </div>
+</div>
+
+
                     </div>
                   )}
                 </CardContent>

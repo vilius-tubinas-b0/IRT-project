@@ -31,7 +31,7 @@ const loadingSteps = [
     title: 'Generating product images',
     description: 'Creating high-quality marketing visuals',
     icon: ImageIcon,
-    duration: 900
+    duration: 1900
   },
   {
     id: 'content',
@@ -51,40 +51,47 @@ export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
   const [progress, setProgress] = useState(0);
   const [completedSteps, setCompletedSteps] = useState<Set<string>>(new Set());
 
-  useEffect(() => {
-    const totalDuration = loadingSteps.reduce((sum, step) => sum + step.duration, 0);
-    let elapsed = 0;
+useEffect(() => {
+  let isCancelled = false;
 
-    const timer = setInterval(() => {
-      elapsed += 100;
-      const newProgress = Math.min((elapsed / totalDuration) * 100, 100);
-      setProgress(newProgress);
+  const runSteps = async () => {
+    let progressSoFar = 0;
 
-      // Update current step and completed steps based on elapsed time
-      let stepElapsed = 0;
-      for (let i = 0; i < loadingSteps.length; i++) {
-        stepElapsed += loadingSteps[i].duration;
-        if (elapsed >= stepElapsed - loadingSteps[i].duration && elapsed < stepElapsed) {
-          setCurrentStep(i);
-        }
-        if (elapsed >= stepElapsed) {
-          setCompletedSteps(prev => new Set([...prev, loadingSteps[i].id]));
-        }
+    for (let i = 0; i < loadingSteps.length; i++) {
+      if (isCancelled) return;
+
+      const step = loadingSteps[i];
+      setCurrentStep(i);
+
+      const incrementCount = 10;
+      const interval = step.duration / incrementCount;
+
+      for (let j = 0; j < incrementCount; j++) {
+        await new Promise(res => setTimeout(res, interval));
+        if (isCancelled) return;
+
+        progressSoFar += (100 / loadingSteps.length) / incrementCount;
+        setProgress(Math.min(progressSoFar, 100));
       }
 
-      if (elapsed >= totalDuration) {
-        clearInterval(timer);
-        setTimeout(onComplete, 500);
-      }
-    }, 100);
+      setCompletedSteps(prev => new Set([...prev, step.id]));
+    }
 
-    return () => clearInterval(timer);
-  }, [onComplete]);
+    await new Promise(res => setTimeout(res, 500));
+    if (!isCancelled) onComplete();
+  };
+
+  runSteps();
+
+  return () => {
+    isCancelled = true;
+  };
+}, [onComplete]);
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex items-center justify-center p-4">
-      <Card className="w-full max-w-2xl bg-white/80 backdrop-blur-sm shadow-2xl">
-        <CardContent className="p-8">
+      <div className="w-full max-w-3xl p-8 space-y-10">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-2">
               Generating Your Product Content
@@ -100,7 +107,8 @@ export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
                 <span className="text-gray-600">Overall Progress</span>
                 <span className="font-medium">{Math.round(progress)}%</span>
               </div>
-              <Progress value={progress} className="h-3" />
+              <Progress value={progress} className="h-3 border border-gray-300 bg-white shadow-sm" />
+
             </div>
 
             <div className="space-y-4">
@@ -112,13 +120,13 @@ export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
                 return (
                   <div
                     key={step.id}
-                    className={`flex items-start space-x-4 p-4 rounded-lg transition-all duration-300 ${
-                      isActive 
-                        ? 'bg-blue-50 border-l-4 border-blue-500' 
-                        : isCompleted 
-                          ? 'bg-green-50 border-l-4 border-green-500'
-                          : 'bg-gray-50'
-                    }`}
+className={`flex items-start space-x-4 p-4 rounded-lg border transition-all duration-300 ${
+  isActive 
+    ? 'bg-blue-50 border-blue-300' 
+    : isCompleted 
+      ? 'bg-green-50 border-green-300'
+      : 'bg-gray-50 border-gray-200'
+}`}
                   >
                     <div className={`flex-shrink-0 p-2 rounded-full ${
                       isActive 
@@ -150,8 +158,7 @@ export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
               })}
             </div>
           </div>
-        </CardContent>
-      </Card>
+        </div>
     </div>
   );
 };

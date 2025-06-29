@@ -10,6 +10,10 @@ import { ImageGallery } from './ImageGallery';
 import { MarketingMaterials } from './MarketingMaterials';
 import { Sources } from './Sources';
 
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
+
 interface ResultsDisplayProps {
   content: any;
   onBack: () => void;
@@ -79,21 +83,28 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
           content: `wireless headphones, noise cancelling, premium audio, bluetooth headphones, high-quality sound, comfortable fit, long battery life, audiophile, music lover, professional audio`
         },
         {
-          type: 'Instagram Story',
+          type: 'Story',
+          platform: 'Instagram',
+          imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500',
+          size: '1080x1920',
+          content: 'Swipe up to discover premium audio'
+        },
+                {
+          type: 'Post',
           platform: 'Instagram',
           imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500',
           size: '1080x1920',
           content: 'Swipe up to discover premium audio'
         },
         {
-          type: 'Facebook Ad Visual',
+          type: 'Ad',
           platform: 'Facebook',
           imageUrl: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=500',
           size: '1200x628',
           content: 'Transform your listening experience'
         },
         {
-          type: 'Product Demo Video',
+          type: 'Reel',
           platform: 'YouTube',
           videoUrl: 'https://example.com/demo-video.mp4',
           imageUrl: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500',
@@ -144,41 +155,20 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
     };
 
     return baseContent;
-  };
+  }; 
 
   const richContent = getRichContent();
 
   // Convert markdown-style text to React components
-  const formatDescription = (text: string) => {
-    const parts = text.split(/(\*\*.*?\*\*)/g);
-    return parts.map((part, index) => {
-      if (part.startsWith('**') && part.endsWith('**')) {
-        return <strong key={index}>{part.slice(2, -2)}</strong>;
-      }
-      return part;
-    });
-  };
+<div className="prose prose-sm sm:prose lg:prose-lg prose-gray max-w-none text-gray-600">
+  <ReactMarkdown
+    children={content.longDescription}
+    remarkPlugins={[remarkGfm]}
+    rehypePlugins={[rehypeRaw]}
+  />
+</div>
 
-  const formattedDescription = content.longDescription.split('\n\n').map((paragraph: string, index: number) => {
-    if (paragraph.includes('**Key') || paragraph.includes('**Advanced')) {
-      const [title, ...items] = paragraph.split('\n');
-      return (
-        <div key={index} className="space-y-3">
-          <p className="text-gray-700 leading-relaxed font-medium">{formatDescription(title)}</p>
-          <ul className="list-disc list-inside space-y-1 ml-4">
-            {items.map((item: string, fIndex: number) => (
-              <li key={fIndex} className="text-gray-700">{item.replace('• ', '')}</li>
-            ))}
-          </ul>
-        </div>
-      );
-    }
-    return (
-      <p key={index} className="text-gray-700 leading-relaxed">
-        {formatDescription(paragraph)}
-      </p>
-    );
-  });
+
 
   return (
     <div className="max-w-7xl mx-auto space-y-6">
@@ -239,7 +229,7 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
             </CardHeader>
             {content.shortDescription && (
               <CardContent>
-                <p className="text-gray-600 text-xl leading-relaxed">
+                <p className="text-gray-600 text-m leading-relaxed">
                   {content.shortDescription}
                 </p>
               </CardContent>
@@ -261,9 +251,17 @@ export const ResultsDisplay = ({ content, onBack }: ResultsDisplayProps) => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="prose prose-gray max-w-none space-y-4">
-                {formattedDescription}
-              </div>
+<div className="prose prose-sm sm:prose lg:prose-lg prose-gray max-w-none text-gray-600">
+  <ReactMarkdown
+    children={content.longDescription}
+    remarkPlugins={[remarkGfm]}
+    rehypePlugins={[rehypeRaw]}
+  />
+
+  
+
+</div>
+
             </CardContent>
           </Card>
         </div>

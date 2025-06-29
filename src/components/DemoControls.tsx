@@ -7,34 +7,35 @@ import { ChevronUp, ChevronDown, Cog } from 'lucide-react';
 
 const demoProducts = [
   {
-    id: 'wireless-headphones',
-    title: 'Premium Wireless Noise-Cancelling Headphones',
-    description: 'High-quality audio with active noise cancellation',
-    brand: 'AudioTech Pro',
-    category: 'Electronics'
+    id: 'stanley-tumbler',
+    title: 'Stanley IceFlow™ Flip Straw Tumbler 30oz',
+    description: 'Durable, stylish water bottle with built-in straw and double-wall vacuum insulation',
+    brand: 'Stanley',
+    category: 'Drinkware'
   },
   {
-    id: 'running-shoes',
-    title: 'Ultra-Lightweight Running Shoes',
-    description: 'Performance athletic footwear with advanced cushioning',
-    brand: 'SportMax',
-    category: 'Footwear'
+    id: 'the-ordinary-niacinamide',
+    title: 'Niacinamide 10% + Zinc 1% Serum',
+    description: 'Clinical-strength serum designed to visibly reduce blemishes and balance sebum activity',
+    brand: 'The Ordinary',
+    category: 'Skincare'
   },
   {
-    id: 'smart-watch',
-    title: 'Fitness Tracking Smart Watch',
-    description: 'Advanced health monitoring with GPS and heart rate tracking',
-    brand: 'TechWear',
-    category: 'Wearables'
+    id: 'baltic-candle',
+    title: 'Baltic Sea Scented Candle — Hand-Poured in Klaipėda',
+    description: 'Locally crafted soy wax candle inspired by sea breeze, pine, and amber resin',
+    brand: 'Klaipėda Home',
+    category: 'Home Fragrance'
   },
   {
-    id: 'coffee-maker',
-    title: 'Professional Espresso Coffee Machine',
-    description: 'Commercial-grade espresso maker for home use',
-    brand: 'BrewMaster',
-    category: 'Appliances'
+    id: 'keyboard-slime',
+    title: 'Anti-Stress Keyboard Cleaner Slime — Blueberry Scented',
+    description: 'Novelty slime toy that cleans dust from keyboards while relieving stress',
+    brand: 'ZenGadget',
+    category: 'Accessories'
   }
 ];
+
 
 interface DemoControlsProps {
   selectedDemo: string;
@@ -68,7 +69,7 @@ export const DemoControls = ({ selectedDemo, onDemoSelect }: DemoControlsProps) 
               </CardTitle>
               {selectedDemo && (
                 <Badge variant="secondary" className="bg-green-100 text-green-700 text-xs">
-                  {demoProducts.find(p => p.id === selectedDemo)?.title.slice(0, 20)}...
+                  {demoProducts.find(p => p.id === selectedDemo)?.title}
                 </Badge>
               )}
             </div>

@@ -8,7 +8,7 @@ import { useToast } from '@/hooks/use-toast';
 
 interface MarketingMaterial {
   type: string;
-  content: string;
+  content?: string;
   platform?: string;
   size?: string;
   imageUrl?: string;
@@ -75,26 +75,7 @@ export const MarketingMaterials = ({ materials, productTitle }: MarketingMateria
   return (
     <div className="space-y-6">
       {/* Category Tabs */}
-      <div className="flex flex-wrap gap-2">
-        {categories.map((category) => {
-          const Icon = category.icon;
-          return (
-            <Button
-              key={category.id}
-              variant={selectedCategory === category.id ? "default" : "outline"}
-              size="sm"
-              onClick={() => setSelectedCategory(category.id)}
-              className="flex items-center space-x-2"
-            >
-              {Icon && <Icon className="w-4 h-4" />}
-              <span>{category.name}</span>
-              <Badge variant="secondary" className="ml-1 text-xs">
-                {getCategoryMaterials(category.id).length}
-              </Badge>
-            </Button>
-          );
-        })}
-      </div>
+     
 
       {/* Marketing Copy with Chips */}
       {copyMaterials.length > 0 && (
@@ -161,7 +142,7 @@ export const MarketingMaterials = ({ materials, productTitle }: MarketingMateria
       {visualMaterials.length > 0 && (
         <div className="space-y-4">
           <h3 className="text-lg font-semibold text-gray-900">Visual Marketing Assets</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {visualMaterials.map((material, index) => (
               <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
                 <div className="relative group">
@@ -169,7 +150,7 @@ export const MarketingMaterials = ({ materials, productTitle }: MarketingMateria
                     <div className="relative bg-gray-900">
                       <video
                         src={material.videoUrl}
-                        className="w-full h-48 object-cover"
+                        className="w-full aspect-square object-cover"
                         poster={material.imageUrl}
                         muted
                       />
@@ -183,7 +164,7 @@ export const MarketingMaterials = ({ materials, productTitle }: MarketingMateria
                     <img
                       src={material.imageUrl}
                       alt={`${material.type} for ${productTitle}`}
-                      className="w-full h-48 object-cover"
+                      className="w-full aspect-square object-cover"
                     />
                   )}
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-200">
@@ -202,24 +183,33 @@ export const MarketingMaterials = ({ materials, productTitle }: MarketingMateria
                     </div>
                   </div>
                 </div>
-                <CardContent className="p-4">
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <h4 className="font-medium text-gray-900">{material.type}</h4>
-                      <div className="flex items-center space-x-1">
-                        {material.platform && (
-                          <Badge variant="outline" className="text-xs">{material.platform}</Badge>
-                        )}
-                        {material.size && (
-                          <Badge variant="secondary" className="text-xs">{material.size}</Badge>
-                        )}
-                      </div>
-                    </div>
-                    {material.content && (
-                      <p className="text-sm text-gray-600">{material.content}</p>
-                    )}
-                  </div>
-                </CardContent>
+<CardContent className="p-4 space-y-3">
+  {material.content && (
+    <p className="text-base font-medium text-gray-900 leading-snug">
+      {material.content}
+    </p>
+  )}
+
+  <div className="flex flex-wrap gap-2">
+    {material.platform && (
+      <Badge variant="secondary" className="text-xs capitalize">
+        {material.platform}
+      </Badge>
+    )}
+    {material.type && (
+      <Badge variant="outline" className="text-xs lowercase">
+        {material.type}
+      </Badge>
+    )}
+    {material.size && (
+      <Badge variant="outline" className="text-xs">
+        {material.size}
+      </Badge>
+    )}
+  </div>
+</CardContent>
+
+
               </Card>
             ))}
           </div>
